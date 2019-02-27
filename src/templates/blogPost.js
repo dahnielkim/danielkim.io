@@ -4,6 +4,7 @@ import { FaFolderOpen } from "react-icons/fa";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import SEO from "../components/SEO";
 
 import { formatPostDate, formatReadingTime } from "../utils/helpers";
 
@@ -16,9 +17,18 @@ const Template = props => {
     const title = markdownRemark.frontmatter.title;
     const html = markdownRemark.html;
     const tag = pageContext.tag[0];
+    const pathSlug = `/${pageContext.pathSlug}`;
+    const excerpt = markdownRemark.frontmatter.excerpt;
 
     return (
         <div>
+            <SEO
+                lang="en"
+                title={title}
+                description={excerpt}
+                slug={pathSlug}
+            />
+
             <Header location={location} />
 
             <article className="blog-post">
@@ -79,6 +89,7 @@ export const query = graphql`
             frontmatter {
                 title
                 date(formatString: "MMMM DD, YYYY")
+                excerpt
             }
             timeToRead
         }

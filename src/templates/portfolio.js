@@ -1,13 +1,22 @@
 import React from "react";
+import { graphql } from "gatsby";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import SEO from "../components/SEO";
 
 const Portfolio = props => {
     const { location } = props;
 
     return (
         <div>
+            <SEO
+                lang="en"
+                title="Daniel Kim Portfolio"
+                description="Portfolio page for Daniel Kim"
+                slug={`/${props.pathContext.pathSlug}`}
+            />
+
             <Header location={location} />
 
             <div className="body-content">
@@ -18,5 +27,13 @@ const Portfolio = props => {
         </div>
     );
 };
+
+export const query = graphql`
+    query($pathSlug: String!) {
+        markdownRemark(frontmatter: { path: { eq: $pathSlug } }) {
+            html
+        }
+    }
+`;
 
 export default Portfolio;

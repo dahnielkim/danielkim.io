@@ -4,6 +4,7 @@ import { FaFolderOpen } from "react-icons/fa";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import SEO from "../components/SEO";
 
 import { formatReadingTime, formatPostDate } from "../utils/helpers";
 
@@ -15,6 +16,13 @@ const Layout = props => {
 
     return (
         <div>
+            <SEO
+                lang="en"
+                title="DANIELKIM.IO"
+                description="Thoughts and topics of various things I am passionate about"
+                slug="/"
+            />
+            
             <Header location={location} />
 
             <div className="body-content">

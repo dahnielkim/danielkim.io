@@ -52,6 +52,9 @@ const createPortfolioPage = createPage => {
     createPage({
         path: "/portfolio",
         component: portfolioTemplate,
+        context: {
+            pathSlug: "portfolio"
+        }
     });
 };
 
