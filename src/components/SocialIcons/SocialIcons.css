@@ -3,7 +3,8 @@
     margin-right: 10px;
 }
 
-.social-icon:hover, .social-icon-left:hover {
+.social-icon:hover,
+.social-icon-left:hover {
     color: #1DA1F2;
 }
 

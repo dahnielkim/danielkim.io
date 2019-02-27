@@ -1,24 +1,13 @@
 import React from "react";
-import { StaticQuery, graphql, Link } from "gatsby";
+import { StaticQuery, graphql } from "gatsby";
+
+import TitleAndDescription from "./TitleAndDescription";
+import Navbar from "../Navbar";
+
 import "./Header.css";
 
-const TitleAndDescription = ({ data }) => {
-    const title = data.site.siteMetadata.title;
-    const description = data.site.siteMetadata.description;
-
-    return (
-        <div className="header-comp">
-            <div>
-                <h2>
-                    <Link to="/">{title}</Link>
-                </h2>
-                <p style={{ marginBottom: 10 }}>{description}</p>
-            </div>
-        </div>
-    );
-};
-
-const Header = () => {
+const Header = props => {
+    const { location } = props;
     return (
         <StaticQuery
             query={graphql`
@@ -32,11 +21,17 @@ const Header = () => {
                     }
                 }
             `}
-            render={data => (
-                <div>
-                    <TitleAndDescription data={data} />
-                </div>
-            )}
+            render={data => {
+                return (
+                    <div className="header-bottom-comp">
+                        <div className="header-comp">
+                            <TitleAndDescription data={data} />
+                        </div>
+
+                        <Navbar pathName={location.pathname} />
+                    </div>
+                );
+            }}
         />
     );
 };

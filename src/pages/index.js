@@ -1,18 +1,21 @@
 import React from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import { graphql, Link } from "gatsby";
 import { FaFolderOpen } from "react-icons/fa";
+
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
 import { formatReadingTime, formatPostDate } from "../utils/helpers";
 
 import "./index.css";
 
-const Layout = ({ data }) => {
+const Layout = props => {
+    const { location, data } = props;
     const { edges } = data.allMarkdownRemark;
 
     return (
         <div>
-            <Header />
+            <Header location={location} />
 
             <div className="body-content">
                 {edges.map(edge => {

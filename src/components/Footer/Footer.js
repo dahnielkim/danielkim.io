@@ -1,30 +1,35 @@
 import React from "react";
-import ProfileImg from "../ProfileImg";
-import SocialIcons from "../SocialIcons";
 import { GiSmallFire } from "react-icons/gi";
+
+import ProfileImg from "../ProfileImg";
+import Bio from "./Bio";
+import Copyright from "./Copyright";
+
 import "./Footer.css";
 
 const Footer = () => {
     return (
-        <div className="footer-comp">
-            <span className="footer-text">
-                Created with
-                <GiSmallFire
-                    style={{ marginLeft: 8, marginRight: 8 }}
-                    className="footer-heart"
+        <div>
+            <div className="footer-comp">
+                <span className="footer-text">
+                    Created with
+                    <GiSmallFire className="footer-heart" />
+                    by:
+                </span>
+
+                <ProfileImg />
+
+                <Bio
+                    twitterUrl="https://www.twitter.com/dahnielkim"
+                    githubUrl="https://www.github.com/dahnielkim"
+                    linkedinUrl="https://www.linkedin.com/in/dshkim/"
+                    occupationTitle="Software Engineer"
+                    companyName="Vlocity, Inc"
+                    companyUrl="https://www.vlocity.com"
                 />
-                by:
-            </span>
-
-            <ProfileImg />
-
-            <div>
-                <h2 style={{ marginTop: 10 }}>Daniel Kim</h2>
-                <p style={{ marginBottom: 10 }}>
-                    Software Engineer @ Vlocity, Inc
-                </p>
-                <SocialIcons />
             </div>
+
+            <Copyright />
         </div>
     );
 };

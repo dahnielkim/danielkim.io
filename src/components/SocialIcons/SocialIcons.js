@@ -1,18 +1,21 @@
 import React from "react";
 import { FaGithubAlt, FaTwitter, FaLinkedinIn } from "react-icons/fa";
+
 import "./SocialIcons.css";
 
-const SocialIcons = () => {
+const SocialIcons = props => {
     return (
         <div>
-            <a href="https://github.com/dahnielkim">
+            <a href={props.githubUrl}>
                 <FaGithubAlt className="social-icon-left" />
             </a>
-            <a href="https://twitter.com/dahnielkim">
-                <FaTwitter className="social-icon twitter" />
-            </a>
-            <a href="https://www.linkedin.com/in/dshkim/">
+
+            <a href={props.linkedinUrl}>
                 <FaLinkedinIn className="social-icon linkedin" />
+            </a>
+
+            <a href={props.twitterUrl}>
+                <FaTwitter className="social-icon twitter" />
             </a>
         </div>
     );

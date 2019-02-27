@@ -1,22 +1,35 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
+import { FaFolderOpen } from "react-icons/fa";
+
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+
 import { formatPostDate, formatReadingTime } from "../utils/helpers";
 
-const Template = ({ data, pageContext }) => {
+const Template = props => {
+    const { pageContext, data, location } = props;
+
     // gets next and prev path slugs
     const { next, prev } = pageContext;
     const { markdownRemark } = data;
     const title = markdownRemark.frontmatter.title;
     const html = markdownRemark.html;
+    const tag = pageContext.tag[0];
 
     return (
         <div>
-            <Header />
+            <Header location={location} />
 
             <article className="blog-post">
                 <header>
+                    <div style={{ textAlign: "center" }}>
+                        <FaFolderOpen style={{ fontSize: 12 }} />
+                        <span className="body-tags">
+                            <Link to={`/tags/${tag}`}>{tag}</Link>
+                        </span>
+                    </div>
+
                     <h1
                         style={{
                             fontSize: 40,

@@ -68,17 +68,19 @@ a:hover {
 
 .footer {
     font-weight: bold;
-    overflow:auto;
+    overflow: auto;
 }
 
 .footer:after {
     content: "";
     clear: both;
-    display:table;
+    display: table;
 }
 
 @media only screen and (max-width: 966px) {
-    .body-content {
+
+    .body-content,
+    .blog-post {
         margin-right: 1rem;
         margin-left: 1rem;
     }
