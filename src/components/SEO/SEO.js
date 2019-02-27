@@ -19,13 +19,14 @@ function SEO({ meta, image, title, description, slug, lang = "en" }) {
                         htmlAttributes={{ lang }}
                         {...(title
                             ? {
-                                  titleTemplate: `%s — ${siteMetadata.title}`,
+                                  titleTemplate:
+                                      slug === "/"
+                                          ? `Home - ${siteMetadata.title}`
+                                          : `%s — ${siteMetadata.title}`,
                                   title,
                               }
                             : {
-                                  title: `${
-                                      siteMetadata.title
-                                  } by Daniel Kim`,
+                                  title: `${siteMetadata.title} by Daniel Kim`,
                               })}
                         meta={[
                             {

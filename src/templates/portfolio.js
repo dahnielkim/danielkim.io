@@ -7,14 +7,15 @@ import SEO from "../components/SEO";
 
 const Portfolio = props => {
     const { location } = props;
+    console.log(props, 'prop')
 
     return (
         <div>
             <SEO
                 lang="en"
-                title="Daniel Kim Portfolio"
+                title="Portfolio"
                 description="Portfolio page for Daniel Kim"
-                slug={`/${props.pathContext.pathSlug}`}
+                slug={`/${props.pageContext.pathSlug}`}
             />
 
             <Header location={location} />
