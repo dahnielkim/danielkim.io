@@ -16,6 +16,7 @@ This blog consists of the following technology:
 -   React Icons
 -   Webpack
 -   Markdown
+-   Javascript
 -   HTML
 -   CSS
 
