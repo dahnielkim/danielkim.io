@@ -1,11 +1,11 @@
-import React from "react"
-import { graphql, Link } from "gatsby"
+import React from "react";
+import { Link } from "gatsby";
 
 // data => for queries
 // context => for context
-const AllTagsTemplate = ({ data, pageContext }) => {
-    const { tags } = pageContext
-    
+const AllTagsTemplate = ({ pageContext }) => {
+    const { tags } = pageContext;
+
     return (
         <div>
             <div>
@@ -13,16 +13,14 @@ const AllTagsTemplate = ({ data, pageContext }) => {
                     {tags.map((tagName, index) => {
                         return (
                             <li key={index}>
-                                <Link to={`/tags/${tagName}`}>
-                                    {tagName}
-                                </Link>
+                                <Link to={`/tags/${tagName}`}>{tagName}</Link>
                             </li>
-                        )
+                        );
                     })}
                 </ul>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default AllTagsTemplate
+export default AllTagsTemplate;

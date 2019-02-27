@@ -1,17 +1,22 @@
-import React from "react"
-import { StaticQuery, graphql } from "gatsby"
-import "./Header.css"
+import React from "react";
+import { StaticQuery, graphql, Link } from "gatsby";
+import "./Header.css";
 
 const TitleAndDescription = ({ data }) => {
-    const title = data.site.siteMetadata.title
-    const description = data.site.siteMetadata.description
+    const title = data.site.siteMetadata.title;
+    const description = data.site.siteMetadata.description;
+
     return (
         <div className="header-comp">
-            <h2>{title}</h2>
-            <p>{description}</p>
+            <div>
+                <h2>
+                    <Link to="/">{title}</Link>
+                </h2>
+                <p style={{ marginBottom: 10 }}>{description}</p>
+            </div>
         </div>
-    )
-}
+    );
+};
 
 const Header = () => {
     return (
@@ -19,6 +24,7 @@ const Header = () => {
             query={graphql`
                 query {
                     site {
+                        buildTimeZone
                         siteMetadata {
                             title
                             description
@@ -32,7 +38,7 @@ const Header = () => {
                 </div>
             )}
         />
-    )
-}
+    );
+};
 
 export default Header;

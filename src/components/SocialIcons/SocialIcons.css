@@ -1,0 +1,24 @@
+.social-icon {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.social-icon:hover, .social-icon-left:hover {
+    color: #1DA1F2;
+}
+
+.twitter {
+    color: #1DA1F2;
+}
+
+.twitter:hover {
+    color: greenyellow;
+}
+
+.linkedin {
+    color: #0077B5;
+}
+
+.social-icon-left {
+    margin-right: 10px;
+}
