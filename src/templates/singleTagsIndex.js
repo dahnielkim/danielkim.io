@@ -19,7 +19,6 @@ const SingleTagsTemplate = props => {
                 <div>
                     <ul>
                         {posts.map((post, index) => {
-                            console.log(post, "post");
                             return (
                                 <li key={index}>
                                     <Link to={post.frontmatter.path}>

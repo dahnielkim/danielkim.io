@@ -7,7 +7,6 @@ import SEO from "../components/SEO";
 
 const Portfolio = props => {
     const { location } = props;
-    console.log(props, 'prop')
 
     return (
         <div>
