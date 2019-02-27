@@ -27,11 +27,6 @@ a:hover {
     display: flex;
 }
 
-.body-tags {
-    font-size: 13px;
-    margin-left: 5px;
-}
-
 .body-content {
     max-width: 55rem;
     margin: 0 auto;
@@ -39,6 +34,12 @@ a:hover {
 
 .post-date {
     font-size: 14px;
+    text-align: center;
+}
+
+.post-wrapper {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 .post-title {
@@ -66,6 +67,10 @@ a:hover {
     text-align: center;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .footer {
     font-weight: bold;
     overflow: auto;
@@ -75,6 +80,13 @@ a:hover {
     content: "";
     clear: both;
     display: table;
+}
+
+.blog-post-title {
+    font-size: 40px;
+    margin: 0;
+    font-weight: 700;
+    text-align: center;
 }
 
 @media only screen and (max-width: 966px) {

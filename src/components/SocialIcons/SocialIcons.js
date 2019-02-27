@@ -1,6 +1,5 @@
 import React from "react";
 import { FaGithubAlt, FaTwitter, FaLinkedinIn } from "react-icons/fa";
-
 import "./SocialIcons.css";
 
 const SocialIcons = props => {

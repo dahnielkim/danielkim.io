@@ -1,13 +1,8 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
-import { FaFolderOpen } from "react-icons/fa";
-
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import SEO from "../components/SEO";
-
+import SiteLayout from "../components/Layout";
+import TagItem from "../components/TagItem";
 import { formatReadingTime, formatPostDate } from "../utils/helpers";
-
 import "./index.css";
 
 const Layout = props => {
@@ -16,54 +11,46 @@ const Layout = props => {
 
     return (
         <div>
-            <SEO
+            <SiteLayout
                 lang="en"
-                title="DANIELKIM.IO"
-                description="Thoughts and topics of various things I am passionate about"
-                slug="/"
-            />
-            
-            <Header location={location} />
+                seoTitle="DANIELKIM.IO"
+                seoDesc="Thoughts and topics of various things I am passionate about"
+                seoSlug="/"
+                location={location}
+            >
+                <div className="body-content">
+                    {edges.map(edge => {
+                        const { frontmatter, timeToRead } = edge.node;
 
-            <div className="body-content">
-                {edges.map(edge => {
-                    const { frontmatter, timeToRead } = edge.node;
+                        return (
+                            <div
+                                className="post-wrapper"
+                                key={frontmatter.path}
+                            >
+                                <TagItem
+                                    tagLink={`/tags/${frontmatter.tags}`}
+                                    tagName={frontmatter.tags}
+                                />
 
-                    return (
-                        <div
-                            style={{ marginBottom: "1rem", marginTop: "1rem" }}
-                            className="body-content"
-                            key={frontmatter.path}
-                        >
-                            <div>
-                                <FaFolderOpen style={{ fontSize: 12 }} />
-                                <span className="body-tags">
-                                    <Link to={`/tags/${frontmatter.tags}`}>
-                                        {frontmatter.tags}
-                                    </Link>
-                                </span>
-                            </div>
+                                <Link to={frontmatter.path}>
+                                    <div className="post-title">
+                                        {frontmatter.title}
+                                    </div>
+                                </Link>
 
-                            <Link to={frontmatter.path}>
-                                <div className="post-title">
-                                    {frontmatter.title}
+                                <div className="post-date">
+                                    {formatPostDate(frontmatter.date, "en")}
+                                    {`${formatReadingTime(timeToRead)}`}
                                 </div>
-                            </Link>
 
-                            <div className="post-date">
-                                {formatPostDate(frontmatter.date, "en")}
-                                {`${formatReadingTime(timeToRead)}`}
+                                <div className="post-excerpt">
+                                    {frontmatter.excerpt}
+                                </div>
                             </div>
-
-                            <div className="post-excerpt">
-                                {frontmatter.excerpt}
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
-
-            <Footer />
+                        );
+                    })}
+                </div>
+            </SiteLayout>
         </div>
     );
 };

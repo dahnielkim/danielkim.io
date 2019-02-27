@@ -1,5 +1,4 @@
 import React from "react";
-
 import SocialIcons from "../SocialIcons";
 
 const Bio = props => (

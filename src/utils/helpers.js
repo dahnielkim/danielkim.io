@@ -1,4 +1,7 @@
-// formats the reading time
+/**
+ * Use this function to format the blog reading time
+ * @param {string} minutes 
+ */
 export function formatReadingTime(minutes) {
     // const cups = Math.round(minutes / 5);
     return ` - - ${minutes} min read`;
@@ -10,7 +13,12 @@ ${new Array(cups || 1)
         .join("")} 
 */
 
-// `lang` is optional and will default to the current user agent locale
+/**
+ * Use this function to format the blog post dates. The argument 'lang' is
+ * optional and will default to the current user agent locale
+ * @param {string} date 
+ * @param {string} lang 
+ */
 export function formatPostDate(date, lang) {
     if (typeof Date.prototype.toLocaleDateString !== "function") {
         return date;
@@ -26,6 +34,10 @@ export function formatPostDate(date, lang) {
     return date.toLocaleDateString(...args);
 }
 
+/**
+ * Use this function to format tags
+ * @param {array} tagsArr 
+ */
 export function formatTags(tagsArr) {
     let tagString = "";
     if (tagsArr.length > 0) {
