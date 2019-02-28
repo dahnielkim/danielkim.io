@@ -27,9 +27,20 @@ a:hover {
     display: flex;
 }
 
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2rem;
+    margin: 2rem;
+    margin-top: 2.5rem;
+    border-top: 1px dashed black;
+}
+
 .body-content {
     max-width: 55rem;
     margin: 0 auto;
+    margin-bottom: 2.5rem;
 }
 
 .post-date {
@@ -59,7 +70,7 @@ a:hover {
 .blog-post {
     max-width: 55rem;
     margin: 0 auto;
-    margin-bottom: 30px;
+    margin-bottom: 2.5rem;
 }
 
 .center-text {

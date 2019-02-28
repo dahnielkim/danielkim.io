@@ -2,58 +2,95 @@ import React from "react";
 import { graphql, Link } from "gatsby";
 import SiteLayout from "../components/Layout";
 import TagItem from "../components/TagItem";
+import Pagination from "../components/Pagination";
 import { formatReadingTime, formatPostDate } from "../utils/helpers";
 import "./index.css";
 
-const Layout = props => {
-    const { location, data } = props;
-    const { edges } = data.allMarkdownRemark;
+class Layout extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            currentPage: 1,
+            totalItems: 10,
+        };
+        this.handleClick = this.handleClick.bind(this);
+    }
 
-    return (
-        <div>
-            <SiteLayout
-                lang="en"
-                seoTitle="DANIELKIM.IO"
-                seoDesc="Thoughts and topics of various things I am passionate about"
-                seoSlug="/"
-                location={location}
-            >
-                <div className="body-content">
-                    {edges.map(edge => {
-                        const { frontmatter, timeToRead } = edge.node;
+    handleClick = event => {
+        this.setState({
+            currentPage: Number(event.target.id),
+        });
+    };
 
-                        return (
-                            <div
-                                className="post-wrapper"
-                                key={frontmatter.path}
-                            >
-                                <TagItem
-                                    tagLink={`/tags/${frontmatter.tags}`}
-                                    tagName={frontmatter.tags}
-                                />
+    render() {
+        const { location, data } = this.props;
+        const { currentPage, totalItems } = this.state;
+        const { edges } = data.allMarkdownRemark;
+        const indexLastPost = currentPage * totalItems;
+        const indexFirstPost = indexLastPost - totalItems;
+        const currentPost = [...edges].slice(indexFirstPost, indexLastPost);
+        let pageNumbers = [];
 
-                                <Link to={frontmatter.path}>
-                                    <div className="post-title">
-                                        {frontmatter.title}
-                                    </div>
-                                </Link>
+        for (let i = 1; i <= Math.ceil(edges.length / totalItems); i++) {
+            pageNumbers.push(i);
+        }
 
-                                <div className="post-date">
-                                    {formatPostDate(frontmatter.date, "en")}
-                                    {`${formatReadingTime(timeToRead)}`}
-                                </div>
+        const renderCurrentPosts = currentPost.map(posts => {
+            const { frontmatter, timeToRead } = posts.node;
 
-                                <div className="post-excerpt">
-                                    {frontmatter.excerpt}
-                                </div>
-                            </div>
-                        );
-                    })}
+            return (
+                <div className="post-wrapper" key={frontmatter.path}>
+                    <TagItem
+                        tagLink={`/tags/${frontmatter.tags}`}
+                        tagName={frontmatter.tags}
+                    />
+
+                    <Link to={frontmatter.path}>
+                        <div className="post-title">{frontmatter.title}</div>
+                    </Link>
+
+                    <div className="post-date">
+                        {formatPostDate(frontmatter.date, "en")}
+                        {`${formatReadingTime(timeToRead)}`}
+                    </div>
+
+                    <div className="post-excerpt">{frontmatter.excerpt}</div>
                 </div>
-            </SiteLayout>
-        </div>
-    );
-};
+            );
+        });
+
+        const renderPageNumbers = pageNumbers.map(index => {
+            return (
+                <Pagination
+                    key={index}
+                    id={index}
+                    handleClick={this.handleClick}
+                    number={index}
+                />
+            );
+        });
+
+        return (
+            <div>
+                <SiteLayout
+                    lang="en"
+                    seoTitle="DANIELKIM.IO"
+                    seoDesc="Thoughts and topics of various things I am passionate about"
+                    seoSlug="/"
+                    location={location}
+                >
+                    <div className="body-content">{renderCurrentPosts}</div>
+
+                    {pageNumbers.length > 1 ? (
+                        <div className="pagination">{renderPageNumbers}</div>
+                    ) : (
+                        ""
+                    )}
+                </SiteLayout>
+            </div>
+        );
+    }
+}
 
 // dynamic query that gets all posts and sorts based on date
 export const query = graphql`
