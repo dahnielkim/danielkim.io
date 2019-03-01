@@ -78,6 +78,7 @@ function SEO({ meta, image, title, description, slug, lang = "en" }) {
                             )
                             .concat(meta)}
                     >
+                        {/* Google analytics */}
                         <script
                             async
                             src="https://www.googletagmanager.com/gtag/js?id=UA-135482517-1"
