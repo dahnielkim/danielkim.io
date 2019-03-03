@@ -60,8 +60,24 @@ a:hover {
 }
 
 .post-excerpt {
+    padding: 20px;
+}
+
+.preview-img {
+    max-height: 100px;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
     margin-top: 20px;
 }
+
+img[src*="#poster"] {
+    max-height: 300px;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    margin-top: 20px;
+ }
 
 .body-all-tags {
     border-top: 1px dashed black;
@@ -107,4 +123,8 @@ a:hover {
         margin-right: 1rem;
         margin-left: 1rem;
     }
+
+    img[src*="#poster"] {
+        display:none;
+     }
 }

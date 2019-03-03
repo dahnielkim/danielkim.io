@@ -6,6 +6,8 @@ tags: ["gatsby"]
 excerpt: "As the initial post, I wanted to share the technology associated with this blog and the basic setup process that may help some other devs create their own blog."
 ---
 
+![gatsby logo][gatsby-logo]
+
 As the initial post, I wanted to share the technology associated with this blog and the basic setup process that may help some other devs create their own blog.
 
 This blog consists of the following technology:
@@ -110,3 +112,5 @@ The query above will give you the site title. Edges are like the path. You can u
 11. To deploy, run `gatsby build`.
 12. Navigate to the `public` directory and initialize your git repo there.
 13. Set up Netlify and link it with the [Github](https://www.github.com) repo.
+
+[gatsby-logo]: https://www.danielkim.io/assets/blog_assets/blog-1.jpg#poster
