@@ -36,7 +36,22 @@ class Layout extends React.Component {
         }
 
         const renderCurrentPosts = currentPost.map(posts => {
-            const { frontmatter, timeToRead } = posts.node;
+            const { frontmatter, timeToRead, excerptAst } = posts.node;
+            const excerptArr = excerptAst.children;
+            let imgProp;
+
+            const imgExcerpt = excerptArr.find(excerpt => {
+                if (excerpt.children[0].tagName === "img") {
+                    return excerpt;
+                }
+                return undefined;
+            });
+
+            if (imgExcerpt) {
+                imgProp = imgExcerpt.children[0].properties;
+            }
+
+            console.log(imgProp);
 
             return (
                 <div className="post-wrapper" key={frontmatter.path}>
@@ -53,6 +68,10 @@ class Layout extends React.Component {
                         {formatPostDate(frontmatter.date, "en")}
                         {`${formatReadingTime(timeToRead)}`}
                     </div>
+
+                    {imgProp ? (
+                        <img className="preview-img" alt="blog poster" src={imgProp.src} />
+                    ) : null}
 
                     <div className="post-excerpt">{frontmatter.excerpt}</div>
                 </div>
@@ -98,6 +117,7 @@ export const query = graphql`
         allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
             edges {
                 node {
+                    excerptAst
                     timeToRead
                     frontmatter {
                         title
