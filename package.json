@@ -18,6 +18,7 @@
     "gatsby-plugin-buildtime-timezone": "^1.0.3",
     "gatsby-plugin-prefetch-google-fonts": "^1.4.0",
     "gatsby-plugin-sharp": "^2.0.0-rc.7",
+    "gatsby-remark-embed-gist": "^1.1.6",
     "gatsby-remark-prismjs": "^3.2.4",
     "gatsby-source-filesystem": "^2.0.1-rc.6",
     "gatsby-transformer-remark": "^2.3.0",
