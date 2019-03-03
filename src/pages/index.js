@@ -70,7 +70,13 @@ class Layout extends React.Component {
                     </div>
 
                     {imgProp ? (
-                        <img className="preview-img" alt="blog poster" src={imgProp.src} />
+                        <Link to={frontmatter.path}>
+                            <img
+                                className="preview-img"
+                                alt="blog poster"
+                                src={imgProp.src}
+                            />
+                        </Link>
                     ) : null}
 
                     <div className="post-excerpt">{frontmatter.excerpt}</div>
