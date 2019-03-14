@@ -3,6 +3,9 @@ import { Menu, Grid, Image, Container } from 'semantic-ui-react';
 import { Link } from 'gatsby';
 import './Navigation.css';
 
+/**
+ * Navigation component displays the navbar and handles its navigation
+ */
 export default class Navigation extends Component {
   render() {
     const { pathname } = this.props.location;
@@ -14,7 +17,7 @@ export default class Navigation extends Component {
             <Grid.Column>
               <Menu secondary pointing borderless>
                 <Menu.Item>
-                <Image style={{height:45}} src="/assets/dkim-logo.png" />
+                  <Image style={{ height: 45 }} src="/assets/dkim-logo.png" />
                 </Menu.Item>
 
                 <Menu.Menu position="right">

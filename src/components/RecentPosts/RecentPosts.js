@@ -12,11 +12,10 @@ class RecentPosts extends Component {
   render() {
     const { edges } = this.props;
 
-    // first two recent posts
+    // first two recent posts in an array so that it can be mapped and rendered
     const recentPostsArray = edges.slice(0, 2);
 
-    console.log(edges, 'edges');
-
+    // renders the recent posts
     const renderCurrentPosts = recentPostsArray.map(posts => {
       const { frontmatter, timeToRead } = posts.node;
 
@@ -29,15 +28,13 @@ class RecentPosts extends Component {
           </Grid.Row>
 
           <Grid.Row style={{ marginTop: '0.5rem', color: 'rgba(0, 0, 0, 0.4)' }}>
-            <div className="post-excerpt">{frontmatter.excerpt}</div>
+            {frontmatter.excerpt}
           </Grid.Row>
 
           <Grid.Row style={{ marginTop: '0.5rem', color: 'rgba(0, 0, 0, 0.4)' }}>
-            <div className="post-date">
-              {formatPostDate(frontmatter.date, 'en')}
-              {`${formatReadingTime(timeToRead)}`}
-              <TagItem tagLink={`/tags/${frontmatter.tags}`} tagName={frontmatter.tags} />
-            </div>
+            {formatPostDate(frontmatter.date, 'en')}
+            {`${formatReadingTime(timeToRead)}`}
+            <TagItem tagLink={`/tags/${frontmatter.tags}`} tagName={frontmatter.tags} />
           </Grid.Row>
         </Grid.Column>
       );
