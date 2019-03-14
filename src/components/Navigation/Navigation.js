@@ -14,7 +14,7 @@ export default class Navigation extends Component {
             <Grid.Column>
               <Menu secondary pointing borderless>
                 <Menu.Item>
-                  <Image src="/favicon.ico" />
+                <Image style={{height:45}} src="/assets/dkim-logo.png" />
                 </Menu.Item>
 
                 <Menu.Menu position="right">

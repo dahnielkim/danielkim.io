@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import SiteLayout from '../components/SiteLayout';
 import HomeMainHeader from '../components/HomeMainHeader';
-import './index.css';
 import RecentPosts from '../components/RecentPosts/RecentPosts';
+import 'semantic-ui-less/semantic.less';
+import './index.css';
 
 class Layout extends Component {
   render() {

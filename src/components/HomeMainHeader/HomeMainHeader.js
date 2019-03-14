@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import { Header, Container, Grid } from 'semantic-ui-react';
 
 const HomeMainHeader = () => {
@@ -19,8 +20,9 @@ const HomeMainHeader = () => {
             <p style={{ marginTop: '2rem' }}>Welcome to my page.</p>
 
             <p>
-              A collection of thoughts, hobbies, projects, and various things I am
-              passionate about.
+              A collection of <Link to="/blog">thoughts</Link>, hobbies,{' '}
+              <Link to="/portfolio">projects</Link>, and various things I am passionate
+              about.
             </p>
           </Grid.Column>
         </Grid.Row>
