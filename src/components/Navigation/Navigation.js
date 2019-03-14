@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, Grid, Image } from 'semantic-ui-react';
+import { Menu, Grid, Image, Container } from 'semantic-ui-react';
 import { Link } from 'gatsby';
 import './Navigation.css';
 
@@ -8,36 +8,37 @@ export default class Navigation extends Component {
     const { pathname } = this.props.location;
 
     return (
-      <Grid container columns={1}>
-        <Grid.Column>
-          <Menu secondary pointing borderless>
-            <Menu.Item>
-              <Image src="/favicon.ico" />
-            </Menu.Item>
+      <Container>
+        <Grid container columns={1}>
+          <Grid.Row>
+            <Grid.Column>
+              <Menu secondary pointing borderless>
+                <Menu.Item>
+                  <Image src="/favicon.ico" />
+                </Menu.Item>
 
-            <Menu.Menu position="right">
-              <Link to="/">
-                <Menu.Item name="home" active={pathname === '/'} />
-              </Link>
+                <Menu.Menu position="right">
+                  <Link to="/">
+                    <Menu.Item name="home" active={pathname === '/'} />
+                  </Link>
 
-              <Link to="/blog">
-                <Menu.Item name="blog" active={pathname === '/blog'} />
-              </Link>
+                  <Link to="/blog">
+                    <Menu.Item name="blog" active={pathname === '/blog'} />
+                  </Link>
 
-              <Link to="/portfolio">
-                <Menu.Item
-                  name="portfolio"
-                  active={pathname === '/portfolio'}
-                />
-              </Link>
+                  <Link to="/portfolio">
+                    <Menu.Item name="portfolio" active={pathname === '/portfolio'} />
+                  </Link>
 
-              <Link to="/about">
-                <Menu.Item name="about" active={pathname === '/about'} />
-              </Link>
-            </Menu.Menu>
-          </Menu>
-        </Grid.Column>
-      </Grid>
+                  <Link to="/about">
+                    <Menu.Item name="about" active={pathname === '/about'} />
+                  </Link>
+                </Menu.Menu>
+              </Menu>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
     );
   }
 }
