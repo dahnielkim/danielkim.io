@@ -21,7 +21,7 @@ export default class Navigation extends Component {
               <Menu secondary pointing borderless stackable>
                 <Menu.Item style={{ paddingLeft: 0 }}>
                   <Link to="/">
-                    <Image style={{ height: 45 }} src="/assets/dkim-logo.png" />
+                    <Image style={{ height: 45 }} src="/assets/profile_pic_circular.png" />
                   </Link>
                 </Menu.Item>
 

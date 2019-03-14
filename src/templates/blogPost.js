@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import { Header, Container, Grid, Image } from 'semantic-ui-react';
+import { Header, Container, Grid } from 'semantic-ui-react';
 import TagItem from '../components/TagItem';
 import SiteLayout from '../components/SiteLayout';
 import BlogFooter from '../components/BlogFooter';

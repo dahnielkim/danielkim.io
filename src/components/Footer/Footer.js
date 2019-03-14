@@ -9,7 +9,7 @@ const Footer = () => (
     <Grid container textAlign="center">
       <Grid.Row>
         <Link to="/">
-          <Image style={{ height: 45 }} src="/assets/dkim-logo.png" />
+          <Image style={{ height: 45 }} src="/assets/profile_pic_circular.png" />
         </Link>
       </Grid.Row>
 
