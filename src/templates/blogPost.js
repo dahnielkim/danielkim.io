@@ -17,7 +17,9 @@ const Template = props => {
   const { next, prev } = pageContext;
   const { markdownRemark } = data;
   const html = markdownRemark.html;
-  const tag = pageContext.tag[0];
+  const blogTag = pageContext.tag.filter(tag => {
+    return tag !== 'blog';
+  });
 
   return (
     <SiteLayout
@@ -40,7 +42,7 @@ const Template = props => {
               <Grid.Row style={{ marginBottom: '1rem', color: 'rgba(0, 0, 0, 0.4)' }}>
                 {formatPostDate(markdownRemark.frontmatter.date, 'en')}
                 {formatReadingTime(markdownRemark.timeToRead)}
-                <TagItem tagLink={`/tags/${tag}`} tagName={tag} />
+                <TagItem tagLink={`/tags/${blogTag}`} tagName={blogTag} />
               </Grid.Row>
 
               <div dangerouslySetInnerHTML={{ __html: html }} />

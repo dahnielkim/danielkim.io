@@ -16,6 +16,9 @@ class AllPosts extends Component {
     const renderAllPosts = posts.map(posts => {
       const { frontmatter, timeToRead } = posts.node;
       const pathLink = `/blog/${frontmatter.path}`;
+      const blogTag = frontmatter.tags.filter(tag => {
+        return tag !== 'blog';
+      });
 
       return (
         <Grid.Column computer={8} tablet={8} mobile={16} key={frontmatter.path}>
@@ -32,7 +35,7 @@ class AllPosts extends Component {
           <Grid.Row style={{ marginTop: '0.5rem', color: 'rgba(0, 0, 0, 0.4)' }}>
             {formatPostDate(frontmatter.date, 'en')}
             {`${formatReadingTime(timeToRead)}`}
-            <TagItem tagLink={`/tags/${frontmatter.tags}`} tagName={frontmatter.tags} />
+            <TagItem tagLink={`/tags/${blogTag}`} tagName={blogTag} />
           </Grid.Row>
 
           <Grid.Row style={{ marginTop: '0.5rem' }}>
