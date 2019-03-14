@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Menu, Grid, Image, Container } from 'semantic-ui-react';
 import { Link } from 'gatsby';
+import Popup from 'reactjs-popup';
+import BurgerIcon from '../BurgerIcon';
+import MobileMenu from '../MobileMenu';
 import './Navigation.css';
 
 /**
@@ -13,11 +16,13 @@ export default class Navigation extends Component {
     return (
       <Container>
         <Grid container columns={1}>
-          <Grid.Row>
+          <Grid.Row only="computer tablet">
             <Grid.Column>
-              <Menu secondary pointing borderless>
-                <Menu.Item>
-                  <Image style={{ height: 45 }} src="/assets/dkim-logo.png" />
+              <Menu secondary pointing borderless stackable>
+                <Menu.Item style={{ paddingLeft: 0 }}>
+                  <Link to="/">
+                    <Image style={{ height: 45 }} src="/assets/dkim-logo.png" />
+                  </Link>
                 </Menu.Item>
 
                 <Menu.Menu position="right">
@@ -26,7 +31,7 @@ export default class Navigation extends Component {
                   </Link>
 
                   <Link to="/blog">
-                    <Menu.Item name="blog" active={pathname === '/blog'} />
+                    <Menu.Item name="blog" active={pathname.includes(`/blog`)} />
                   </Link>
 
                   <Link to="/portfolio">
@@ -40,8 +45,26 @@ export default class Navigation extends Component {
               </Menu>
             </Grid.Column>
           </Grid.Row>
+
+          <Grid.Row only="mobile">
+            <Popup
+              modal
+              overlayStyle={{ background: 'rgba(255,255,255,0.98' }}
+              contentStyle={contentStyle}
+              closeOnDocumentClick={false}
+              trigger={open => <BurgerIcon open={open} />}
+            >
+              {close => <MobileMenu pathName={pathname} close={close} />}
+            </Popup>
+          </Grid.Row>
         </Grid>
       </Container>
     );
   }
 }
+
+const contentStyle = {
+  background: 'rgba(255,255,255,0',
+  width: '80%',
+  border: 'none',
+};

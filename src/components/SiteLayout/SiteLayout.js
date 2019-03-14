@@ -9,7 +9,14 @@ import Footer from '../Footer';
  */
 const SiteLayout = props => {
   return (
-    <Fragment>
+    <div
+      style={{
+        maxWidth: 900,
+        marginRight: 'auto',
+        marginLeft: 'auto',
+        marginTop: '0.5rem',
+      }}
+    >
       <SEO
         lang={props.lang}
         title={props.seoTitle}
@@ -22,7 +29,7 @@ const SiteLayout = props => {
       {props.children}
 
       <Footer />
-    </Fragment>
+    </div>
   );
 };
 

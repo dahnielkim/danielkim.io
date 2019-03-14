@@ -1,19 +1,19 @@
 import React from 'react';
 import SiteLayout from '../components/SiteLayout';
-import PortfolioMainHeader from '../components/PortfolioMainHeader';
+import AboutMainHeader from '../components/AboutMainHeader';
 
-const Portfolio = props => {
+const AboutMe = props => {
   return (
     <SiteLayout
       lang="en"
-      seoTitle="Portfolio"
-      seoDesc="Portfolio page for Daniel Kim"
+      seoTitle="About"
+      seoDesc="About Me page for Daniel Kim"
       seoSlug={`/${props.pageContext.pathSlug}`}
       location={props.location}
     >
-      <PortfolioMainHeader />
+      <AboutMainHeader />
     </SiteLayout>
   );
 };
 
-export default Portfolio;
+export default AboutMe;

@@ -12,19 +12,17 @@ class Layout extends Component {
     const { edges } = data.allMarkdownRemark;
 
     return (
-      <div>
-        <SiteLayout
-          lang="en"
-          seoTitle="DANIELKIM.IO"
-          seoDesc="Thoughts and topics of various things I am passionate about"
-          seoSlug="/"
-          location={location}
-        >
-          <HomeMainHeader />
+      <SiteLayout
+        lang="en"
+        seoTitle="DANIELKIM.IO"
+        seoDesc="Thoughts and topics of various things I am passionate about"
+        seoSlug="/"
+        location={location}
+      >
+        <HomeMainHeader />
 
-          <RecentPosts edges={edges} />
-        </SiteLayout>
-      </div>
+        <RecentPosts edges={edges} />
+      </SiteLayout>
     );
   }
 }

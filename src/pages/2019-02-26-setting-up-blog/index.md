@@ -3,10 +3,9 @@ path: "setting-up-blog"
 date: "2019-02-26"
 title: "Setting up a blog with Gatsby, React, and MD"
 tags: ["gatsby"]
+featuredImage: "./blog-1.jpg"
 excerpt: "As the initial post, I wanted to share the technology associated with this blog and the basic setup process that may help some other devs create their own blog."
 ---
-
-![gatsby logo][gatsby-logo]
 
 As the initial post, I wanted to share the technology associated with this blog and the basic setup process that may help some other devs create their own blog.
 

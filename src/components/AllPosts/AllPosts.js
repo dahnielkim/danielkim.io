@@ -5,18 +5,15 @@ import TagItem from '../TagItem';
 import { formatReadingTime, formatPostDate } from '../../utils/helpers';
 
 /**
- * RecentPosts component displays the first 2 recent blog posts
+ * AllPosts component displays the first 2 recent blog posts
  * on the home page
  */
-class RecentPosts extends Component {
+class AllPosts extends Component {
   render() {
-    const { edges } = this.props;
-
-    // first two recent posts in an array so that it can be mapped and rendered
-    const recentPostsArray = edges.slice(0, 2);
+    const { posts } = this.props;
 
     // renders the recent posts
-    const renderCurrentPosts = recentPostsArray.map(posts => {
+    const renderAllPosts = posts.map(posts => {
       const { frontmatter, timeToRead } = posts.node;
       const pathLink = `/blog/${frontmatter.path}`;
 
@@ -52,14 +49,14 @@ class RecentPosts extends Component {
             as="h3"
             style={{ letterSpacing: 10, color: 'rgba(0, 0, 0, 0.4)', marginBottom: 0 }}
           >
-            RECENT POSTS
+            ALL POSTS
           </Header>
 
-          <Grid.Row>{renderCurrentPosts}</Grid.Row>
+          <Grid.Row>{renderAllPosts}</Grid.Row>
         </Grid>
       </Container>
     );
   }
 }
 
-export default RecentPosts;
+export default AllPosts;

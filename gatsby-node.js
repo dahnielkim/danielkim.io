@@ -3,9 +3,7 @@ const path = require('path');
 const createTagPages = (createPage, posts) => {
   // path to blog post template
   const allTagsIndexTemplate = path.resolve('src/templates/allTagsIndex.js');
-  const singleTagsIndexTemplate = path.resolve(
-    'src/templates/singleTagsIndex.js',
-  );
+  const singleTagsIndexTemplate = path.resolve('src/templates/singleTagsIndex.js');
 
   const postsByTag = {};
 
@@ -46,6 +44,32 @@ const createTagPages = (createPage, posts) => {
   });
 };
 
+const createAllBlogsPage = (createPage, posts) => {
+  const allBlogPostTemplate = path.resolve('src/templates/allBlogs.js');
+
+  createPage({
+    path: '/blog',
+    component: allBlogPostTemplate,
+    context: {
+      pathSlug: 'blog',
+      posts,
+    },
+  });
+};
+
+const createAboutPage = (createPage, posts) => {
+  const aboutMePage = path.resolve('src/templates/aboutMe.js');
+
+  createPage({
+    path: '/about',
+    component: aboutMePage,
+    context: {
+      pathSlug: 'about',
+      posts,
+    },
+  });
+};
+
 const createPortfolioPage = createPage => {
   const portfolioTemplate = path.resolve('src/templates/portfolio.js');
 
@@ -72,9 +96,7 @@ exports.createPages = ({ graphql, actions }) => {
       graphql(
         `
           query {
-            allMarkdownRemark(
-              sort: { order: ASC, fields: [frontmatter___date] }
-            ) {
+            allMarkdownRemark(sort: { order: ASC, fields: [frontmatter___date] }) {
               edges {
                 node {
                   frontmatter {
@@ -82,7 +104,9 @@ exports.createPages = ({ graphql, actions }) => {
                     title
                     tags
                     date
+                    excerpt
                   }
+                  timeToRead
                 }
               }
             }
@@ -98,12 +122,18 @@ exports.createPages = ({ graphql, actions }) => {
         // creates portfolio page
         createPortfolioPage(createPage);
 
+        // creates blog home page
+        createAllBlogsPage(createPage, posts);
+
+        // create about me page
+        createAboutPage(createPage, posts);
+
         // this will create a post for each of the paths
         // index => index of path
         posts.forEach(({ node }, index) => {
           const path = node.frontmatter.path;
           createPage({
-            path,
+            path: `/blog/${path}`,
             component: blogPostTemplate,
             context: {
               pathSlug: path,
@@ -121,14 +151,12 @@ exports.createPages = ({ graphql, actions }) => {
   });
 };
 
+// this will utilize the custom theme for the semantic css framework
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {
-        '../../theme.config$': path.join(
-          __dirname,
-          'src/semantic/theme.config',
-        ),
+        '../../theme.config$': path.join(__dirname, 'src/semantic/theme.config'),
       },
     },
   });
