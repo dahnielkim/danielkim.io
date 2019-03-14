@@ -1,1 +1,2 @@
-require("prismjs/themes/prism-tomorrow.css");
+require('prismjs/themes/prism-tomorrow.css');
+require('semantic-ui-less/semantic.less');

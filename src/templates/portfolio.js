@@ -1,14 +1,14 @@
 import React from "react";
 import { graphql } from "gatsby";
 
-import Layout from "../components/Layout";
+import SiteLayout from "../components/SiteLayout";
 
 const Portfolio = props => {
     const { location } = props;
 
     return (
         <div>
-            <Layout
+            <SiteLayout
                 lang="en"
                 seoTitle="Portfolio"
                 seoDesc="Portfolio page for Daniel Kim"
@@ -19,7 +19,7 @@ const Portfolio = props => {
                     My portfolio is currently under construction... Tinker
                     tinker...
                 </div>
-            </Layout>
+            </SiteLayout>
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import TagItem from "../components/TagItem";
-import Layout from "../components/Layout";
+import SiteLayout from "../components/SiteLayout";
 import BlogFooter from "../components/BlogFooter";
 import { formatPostDate, formatReadingTime } from "../utils/helpers";
 
@@ -16,7 +16,7 @@ const Template = props => {
 
     return (
         <div>
-            <Layout
+            <SiteLayout
                 lang="en"
                 seoTitle={markdownRemark.frontmatter.title}
                 seoDesc={markdownRemark.frontmatter.excerpt}
@@ -47,7 +47,7 @@ const Template = props => {
 
                     <BlogFooter prev={prev} next={next} />
                 </article>
-            </Layout>
+            </SiteLayout>
         </div>
     );
 };

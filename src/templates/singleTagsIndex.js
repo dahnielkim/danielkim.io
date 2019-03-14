@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import Layout from "../components/Layout";
+import SiteLayout from "../components/SiteLayout";
 import { formatPostDate } from "../utils/helpers";
 
 const SingleTagsTemplate = props => {
@@ -10,7 +10,7 @@ const SingleTagsTemplate = props => {
 
     return (
         <div>
-            <Layout
+            <SiteLayout
                 lang="en"
                 seoTitle={tagName}
                 seoDesc={seoDesc}
@@ -38,7 +38,7 @@ const SingleTagsTemplate = props => {
                         </ul>
                     </div>
                 </div>
-            </Layout>
+            </SiteLayout>
         </div>
     );
 };
