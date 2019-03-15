@@ -43,11 +43,16 @@ const Footer = () => (
 
       <Grid.Row style={{ paddingTop: 0 }}>
         <List horizontal divided link size="small">
-          <List.Item style={{ color: 'black' }} as="a" href="https://ko-fi.com/danielkim">
-            Support me with{' '}
-            <span role="img" aria-label="coffee">
-              ☕️
-            </span>
+          <List.Item style={{ color: 'black' }} as="a" href="https://ko-fi.com/A0A8S20V">
+            <a href="https://ko-fi.com/A0A8S20V">
+              <img
+                height="36"
+                style={{ border: 0, height: 36 }}
+                src="https://az743702.vo.msecnd.net/cdn/kofi2.png?v=0"
+                border="0"
+                alt="Buy Me a Coffee"
+              />
+            </a>
           </List.Item>
         </List>
       </Grid.Row>
