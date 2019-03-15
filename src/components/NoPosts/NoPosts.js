@@ -17,7 +17,13 @@ const NoPosts = () => {
         >
           <Grid.Row>
             <p style={{ paddingLeft: '1rem', paddingRight: '1rem' }}>
-              👨🏻‍🔬 In the lab trying to cook up some posts. Please check back later. 👨🏻‍🔬
+              <span role="img" aria-label="scientist">
+                👨🏻‍🔬
+              </span>{' '}
+              In the lab trying to cook up some posts. Please check back later.{' '}
+              <span role="img" aria-label="scientist">
+                👨🏻‍🔬
+              </span>
             </p>
           </Grid.Row>
         </Grid.Column>

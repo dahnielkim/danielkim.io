@@ -41,6 +41,17 @@ const Footer = () => (
         </List>
       </Grid.Row>
 
+      <Grid.Row style={{ paddingTop: 0 }}>
+        <List horizontal divided link size="small">
+          <List.Item style={{ color: 'black' }} as="a" href="https://ko-fi.com/danielkim">
+            Support me with{' '}
+            <span role="img" aria-label="coffee">
+              ☕️
+            </span>
+          </List.Item>
+        </List>
+      </Grid.Row>
+
       <Grid.Row style={{ fontSize: 13, color: 'rgb(0,0,0,0.4)', marginBottom: '1rem' }}>
         © 2019 Daniel Kim. All Rights Reserved.
       </Grid.Row>

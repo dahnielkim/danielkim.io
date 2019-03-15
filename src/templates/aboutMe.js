@@ -7,7 +7,15 @@ const AboutMe = props => {
     <Fragment>
       <p style={{ marginTop: '2rem' }}>Construction in Progress.</p>
 
-      <p>🚧 Hammering away like MC Hammer. Please check back later. 🚧</p>
+      <p>
+        <span role="img" aria-label="construction">
+          🚧
+        </span>{' '}
+        Hammering away like MC Hammer. Please check back later.{' '}
+        <span role="img" aria-label="construction">
+          🚧
+        </span>
+      </p>
     </Fragment>
   );
 
