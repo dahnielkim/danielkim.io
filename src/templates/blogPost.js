@@ -18,8 +18,12 @@ const Template = props => {
   const { markdownRemark } = data;
   const html = markdownRemark.html;
   const blogTag = pageContext.tag.filter(tag => {
-    return tag !== 'blog';
+    return tag !== pageContext.type;
   });
+  let imgSizes;
+  if (markdownRemark.frontmatter.featuredImage) {
+    imgSizes = markdownRemark.frontmatter.featuredImage.childImageSharp.sizes;
+  }
 
   return (
     <SiteLayout
@@ -30,7 +34,7 @@ const Template = props => {
       location={location}
     >
       <Container style={{ marginTop: '1rem' }}>
-        <Img sizes={markdownRemark.frontmatter.featuredImage.childImageSharp.sizes} />
+        {imgSizes ? <Img sizes={imgSizes} /> : null}
 
         <Grid container columns={1} style={{ marginTop: '1rem', marginBottom: '1rem' }}>
           <Grid.Row>
@@ -47,7 +51,7 @@ const Template = props => {
 
               <div dangerouslySetInnerHTML={{ __html: html }} />
 
-              <BlogFooter prev={prev} next={next} />
+              <BlogFooter prev={prev} next={next} type={pageContext.type} />
             </Grid.Column>
           </Grid.Row>
         </Grid>

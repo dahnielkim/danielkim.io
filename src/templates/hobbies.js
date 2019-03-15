@@ -1,6 +1,7 @@
 import React from 'react';
 import SiteLayout from '../components/SiteLayout';
 import HobbiesMainHeader from '../components/HobbiesMainHeader';
+import AllHobbies from '../components/AllHobbies';
 
 const Hobbies = props => {
   return (
@@ -12,6 +13,8 @@ const Hobbies = props => {
       location={props.location}
     >
       <HobbiesMainHeader />
+
+      <AllHobbies posts={props.pageContext.posts} />
     </SiteLayout>
   );
 };

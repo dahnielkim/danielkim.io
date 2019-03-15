@@ -83,11 +83,11 @@ function SEO({ meta, image, title, description, slug, lang = 'en' }) {
             />
             <script>
               {`
-                            window.dataLayer = window.dataLayer || []; function
-                            gtag(){dataLayer.push(arguments)}
-                            gtag('js', new Date()); gtag('config',
-                            'UA-135482517-1');
-                            `}
+                window.dataLayer = window.dataLayer || []; function
+                gtag(){dataLayer.push(arguments)}
+                gtag('js', new Date()); gtag('config',
+                'UA-135482517-1');
+              `}
             </script>
           </Helmet>
         );

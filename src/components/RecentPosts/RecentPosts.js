@@ -14,8 +14,6 @@ class RecentPosts extends Component {
 
     // first two recent posts in an array so that it can be mapped and rendered
     const recentPostsArray = edges.slice(0, 2);
-
-    // renders the recent posts
     const renderCurrentPosts = recentPostsArray.map(posts => {
       const { frontmatter, timeToRead } = posts.node;
       const blogTag = frontmatter.tags.filter(tag => {

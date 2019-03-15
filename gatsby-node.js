@@ -82,6 +82,19 @@ const createPortfolioPage = createPage => {
   });
 };
 
+const createHobbiesPage = (createPage, posts) => {
+  const hobbiesPage = path.resolve('src/templates/hobbies.js');
+
+  createPage({
+    path: '/hobbies',
+    component: hobbiesPage,
+    context: {
+      pathSlug: 'hobbies',
+      posts,
+    },
+  });
+};
+
 // creates the actual pages for each post based off of blogPost.js
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -96,7 +109,10 @@ exports.createPages = ({ graphql, actions }) => {
       graphql(
         `
           query {
-            allMarkdownRemark(sort: { order: ASC, fields: [frontmatter___date] }) {
+            allMarkdownRemark(
+              sort: { order: ASC, fields: [frontmatter___date] }
+              filter: { frontmatter: { tags: { eq: "blog" } } }
+            ) {
               edges {
                 node {
                   frontmatter {
@@ -113,7 +129,10 @@ exports.createPages = ({ graphql, actions }) => {
           }
         `,
       ).then(result => {
-        const posts = result.data.allMarkdownRemark.edges;
+        let posts;
+        if (result.data.allMarkdownRemark) {
+          posts = result.data.allMarkdownRemark.edges;
+        }
 
         // creates tags page
         // path => /tags
@@ -130,22 +149,91 @@ exports.createPages = ({ graphql, actions }) => {
 
         // this will create a post for each of the paths
         // index => index of path
-        posts.forEach(({ node }, index) => {
-          const path = node.frontmatter.path;
-          createPage({
-            path: `/blog/${path}`,
-            component: blogPostTemplate,
-            context: {
-              pathSlug: path,
-              tag: node.frontmatter.tags,
-              prev: index === 0 ? null : posts[index - 1].node,
-              next: index === posts.length - 1 ? null : posts[index + 1].node,
-            },
-          });
+        if (posts) {
+          posts.forEach(({ node }, index) => {
+            const path = node.frontmatter.path;
 
-          // this resolve is to just let everything know that its done
-          resolve();
-        });
+            createPage({
+              path: `/blog/${path}`,
+              component: blogPostTemplate,
+              context: {
+                pathSlug: path,
+                tag: node.frontmatter.tags,
+                prev: index === 0 ? null : posts[index - 1].node,
+                next: index === posts.length - 1 ? null : posts[index + 1].node,
+                type: 'blog',
+              },
+            });
+
+            // this resolve is to just let everything know that its done
+            resolve();
+          });
+        }
+      }),
+    );
+
+    // query to get the path of each blog post, title, and tags
+    resolve(
+      graphql(
+        `
+          query {
+            allMarkdownRemark(
+              sort: { order: DESC, fields: [frontmatter___date] }
+              filter: { frontmatter: { tags: { eq: "hobbies" } } }
+            ) {
+              edges {
+                node {
+                  frontmatter {
+                    path
+                    title
+                    tags
+                    date
+                    excerpt
+                    featuredImage {
+                      childImageSharp {
+                        fluid(maxWidth: 500) {
+                          src
+                        }
+                      }
+                    }
+                  }
+                  timeToRead
+                }
+              }
+            }
+          }
+        `,
+      ).then(result => {
+        let posts;
+        if (result.data.allMarkdownRemark) {
+          posts = result.data.allMarkdownRemark.edges;
+        }
+
+        // creates blog home page
+        createHobbiesPage(createPage, posts);
+
+        // this will create a post for each of the paths
+        // index => index of path
+        if (posts) {
+          posts.forEach(({ node }, index) => {
+            const path = node.frontmatter.path;
+
+            createPage({
+              path: `/hobbies/${path}`,
+              component: blogPostTemplate,
+              context: {
+                pathSlug: path,
+                tag: node.frontmatter.tags,
+                prev: index === 0 ? null : posts[index - 1].node,
+                next: index === posts.length - 1 ? null : posts[index + 1].node,
+                type: 'hobbies',
+              },
+            });
+
+            // this resolve is to just let everything know that its done
+            resolve();
+          });
+        }
       }),
     );
   });

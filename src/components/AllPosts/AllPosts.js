@@ -11,39 +11,41 @@ import { formatReadingTime, formatPostDate } from '../../utils/helpers';
 class AllPosts extends Component {
   render() {
     const { posts } = this.props;
+    let renderAllPosts;
 
-    // renders the recent posts
-    const renderAllPosts = posts.map(posts => {
-      const { frontmatter, timeToRead } = posts.node;
-      const pathLink = `/blog/${frontmatter.path}`;
-      const blogTag = frontmatter.tags.filter(tag => {
-        return tag !== 'blog';
+    if (posts) {
+      renderAllPosts = posts.map(posts => {
+        const { frontmatter, timeToRead } = posts.node;
+        const pathLink = `/blog/${frontmatter.path}`;
+        const blogTag = frontmatter.tags.filter(tag => {
+          return tag !== 'blog';
+        });
+
+        return (
+          <Grid.Column computer={16} tablet={16} mobile={16} key={frontmatter.path}>
+            <Grid.Row>
+              <Link to={pathLink}>
+                <Header as="h3">{frontmatter.title}</Header>
+              </Link>
+            </Grid.Row>
+
+            <Grid.Row style={{ marginTop: '0.5rem', color: 'rgba(0, 0, 0, 0.4)' }}>
+              {frontmatter.excerpt}
+            </Grid.Row>
+
+            <Grid.Row style={{ marginTop: '0.5rem', color: 'rgba(0, 0, 0, 0.4)' }}>
+              {formatPostDate(frontmatter.date, 'en')}
+              {`${formatReadingTime(timeToRead)}`}
+              <TagItem tagLink={`/tags/${blogTag}`} tagName={blogTag} />
+            </Grid.Row>
+
+            <Grid.Row style={{ marginTop: '0.5rem' }}>
+              <Link to={pathLink}>Read more →</Link>
+            </Grid.Row>
+          </Grid.Column>
+        );
       });
-
-      return (
-        <Grid.Column computer={8} tablet={8} mobile={16} key={frontmatter.path}>
-          <Grid.Row>
-            <Link to={pathLink}>
-              <Header as="h3">{frontmatter.title}</Header>
-            </Link>
-          </Grid.Row>
-
-          <Grid.Row style={{ marginTop: '0.5rem', color: 'rgba(0, 0, 0, 0.4)' }}>
-            {frontmatter.excerpt}
-          </Grid.Row>
-
-          <Grid.Row style={{ marginTop: '0.5rem', color: 'rgba(0, 0, 0, 0.4)' }}>
-            {formatPostDate(frontmatter.date, 'en')}
-            {`${formatReadingTime(timeToRead)}`}
-            <TagItem tagLink={`/tags/${blogTag}`} tagName={blogTag} />
-          </Grid.Row>
-
-          <Grid.Row style={{ marginTop: '0.5rem' }}>
-            <Link to={pathLink}>Read more →</Link>
-          </Grid.Row>
-        </Grid.Column>
-      );
-    });
+    }
 
     return (
       <Container style={{ marginTop: '6rem', marginBottom: '4rem' }}>
