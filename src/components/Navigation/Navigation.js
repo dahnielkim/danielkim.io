@@ -38,7 +38,7 @@ export default class Navigation extends Component {
                   </Link>
 
                   <Link to="/hobbies">
-                    <Menu.Item name="hobbies" active={pathname === '/hobbies'} />
+                    <Menu.Item name="hobbies" active={pathname.includes('/hobbies')} />
                   </Link>
 
                   <Link to="/portfolio">
