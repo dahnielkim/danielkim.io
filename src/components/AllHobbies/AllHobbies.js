@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Header, Container, Grid } from 'semantic-ui-react';
 import TwoCurrentHobbies from '../TwoCurrentHobbies';
+import NoPosts from '../NoPosts';
 
 /**
  * AllPosts component displays the first 2 recent blog posts
@@ -29,6 +30,10 @@ class AllHobbies extends Component {
           />
         );
       });
+    }
+    // When there are no posts
+    else {
+      return <NoPosts />;
     }
 
     return (

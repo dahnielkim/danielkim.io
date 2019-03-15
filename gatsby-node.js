@@ -6,17 +6,19 @@ const path = require('path');
 const createTagPages = (createPage, posts) => {
   const postsByTag = {};
 
-  posts.forEach(({ node }) => {
-    if (node.frontmatter.tags) {
-      node.frontmatter.tags.forEach(tag => {
-        if (!postsByTag[tag]) {
-          postsByTag[tag] = [];
-        }
+  if (posts) {
+    posts.forEach(({ node }) => {
+      if (node.frontmatter.tags) {
+        node.frontmatter.tags.forEach(tag => {
+          if (!postsByTag[tag]) {
+            postsByTag[tag] = [];
+          }
 
-        postsByTag[tag].push(node);
-      });
-    }
-  });
+          postsByTag[tag].push(node);
+        });
+      }
+    });
+  }
 
   const tags = Object.keys(postsByTag);
 
