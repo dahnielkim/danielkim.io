@@ -5,9 +5,9 @@ import PageHeader from '../components/PageHeader';
 const Portfolio = props => {
   const bottomSegment = (
     <Fragment>
-      <p style={{ marginTop: '2rem' }}>This page is under massive construction.</p>
+      <p style={{ marginTop: '2rem' }}>Construction in Progress.</p>
 
-      <p>Please check back later.</p>
+      <p>🚧 Hammering away like MC Hammer. Please check back later. 🚧</p>
     </Fragment>
   );
 

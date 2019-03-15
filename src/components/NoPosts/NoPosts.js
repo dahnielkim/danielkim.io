@@ -17,7 +17,7 @@ const NoPosts = () => {
         >
           <Grid.Row>
             <p style={{ paddingLeft: '1rem', paddingRight: '1rem' }}>
-              There are currently no posts right now. Please check back later.
+              👨🏻‍🔬 In the lab trying to cook up some posts. Please check back later. 👨🏻‍🔬
             </p>
           </Grid.Row>
         </Grid.Column>
