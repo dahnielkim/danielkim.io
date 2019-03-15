@@ -1,26 +1,25 @@
 ---
-path: "setting-up-blog"
-date: "2019-02-26"
-title: "Setting up a blog with Gatsby, React, and MD"
-tags: ["gatsby"]
-excerpt: "As the initial post, I wanted to share the technology associated with this blog and the basic setup process that may help some other devs create their own blog."
+path: 'setting-up-blog'
+date: '2019-02-26'
+title: 'Setting up a blog with Gatsby, React, and MD'
+tags: ['gatsby', 'blog']
+featuredImage: './blog-1.jpg'
+excerpt: 'As the initial post, I wanted to share the technology associated with this blog and the basic setup process that may help some other devs create their own blog.'
 ---
-
-![gatsby logo][gatsby-logo]
 
 As the initial post, I wanted to share the technology associated with this blog and the basic setup process that may help some other devs create their own blog.
 
 This blog consists of the following technology:
 
--   GatsbyJS
--   GraphQL
--   React
--   React Icons
--   Webpack
--   Markdown
--   Javascript
--   HTML
--   CSS
+- GatsbyJS
+- GraphQL
+- React
+- React Icons
+- Webpack
+- Markdown
+- Javascript
+- HTML
+- CSS
 
 Deployment is done using the amazing technology of [Netlify](https://www.netlify.com).
 
@@ -44,20 +43,20 @@ npm install --save gatsby-source-filesystem@next gatsby-transformer-remark@next
 
 ```javascript
 module.exports = {
-    siteMetadata: {
-        title: "Daniel Kim's Sample Blog",
-        description: "Some meaningful description",
+  siteMetadata: {
+    title: "Daniel Kim's Sample Blog",
+    description: 'Some meaningful description',
+  },
+  plugins: [
+    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/pages`,
+      },
     },
-    plugins: [
-        `gatsby-transformer-remark`,
-        {
-            resolve: `gatsby-source-filesystem`,
-            options: {
-                name: `pages`,
-                path: `${__dirname}/src/pages`,
-            },
-        },
-    ],
+  ],
 };
 ```
 
@@ -67,11 +66,11 @@ module.exports = {
 
 ```markdown
 ---
-path: "first-post"
-date: "2019-02-26"
-title: "Initial Post"
-tags: ["random"]
-excerpt: "A preview of my first post"
+path: 'first-post'
+date: '2019-02-26'
+title: 'Initial Post'
+tags: ['random']
+excerpt: 'A preview of my first post'
 ---
 
 Testing initial post material.
@@ -82,12 +81,12 @@ Testing initial post material.
 
 ```graphql
 {
-    site {
-        siteMetadata {
-            title
-            description
-        }
+  site {
+    siteMetadata {
+      title
+      description
     }
+  }
 }
 ```
 
@@ -95,15 +94,15 @@ The query above will give you the site title and description.
 
 ```graphql
 {
-    allMarkdownRemark {
-        edges {
-            node {
-                frontmatter {
-                    title
-                }
-            }
+  allMarkdownRemark {
+    edges {
+      node {
+        frontmatter {
+          title
         }
+      }
     }
+  }
 }
 ```
 
