@@ -1,10 +1,9 @@
 const path = require('path');
 
+/**
+ * Creates tag pages for single tags and all tags
+ */
 const createTagPages = (createPage, posts) => {
-  // path to blog post template
-  const allTagsIndexTemplate = path.resolve('src/templates/allTagsIndex.js');
-  const singleTagsIndexTemplate = path.resolve('src/templates/singleTagsIndex.js');
-
   const postsByTag = {};
 
   posts.forEach(({ node }) => {
@@ -23,33 +22,31 @@ const createTagPages = (createPage, posts) => {
 
   createPage({
     path: '/tags',
-    component: allTagsIndexTemplate,
+    component: path.resolve('src/templates/allTagsIndex.js'),
     context: {
       tags: tags.sort(),
     },
   });
 
   tags.forEach(tagName => {
-    const posts = postsByTag[tagName];
-
-    // creates page for single tags
     createPage({
       path: `/tags/${tagName}`,
-      component: singleTagsIndexTemplate,
+      component: path.resolve('src/templates/singleTagsIndex.js'),
       context: {
-        posts,
+        posts: postsByTag[tagName],
         tagName,
       },
     });
   });
 };
 
-const createAllBlogsPage = (createPage, posts) => {
-  const allBlogPostTemplate = path.resolve('src/templates/allBlogs.js');
-
+/**
+ * Creates the Blog navigation page
+ */
+const createBlogPage = (createPage, posts) => {
   createPage({
     path: '/blog',
-    component: allBlogPostTemplate,
+    component: path.resolve('src/templates/allBlogs.js'),
     context: {
       pathSlug: 'blog',
       posts,
@@ -57,12 +54,13 @@ const createAllBlogsPage = (createPage, posts) => {
   });
 };
 
+/**
+ * Creates the About navigation page
+ */
 const createAboutPage = (createPage, posts) => {
-  const aboutMePage = path.resolve('src/templates/aboutMe.js');
-
   createPage({
     path: '/about',
-    component: aboutMePage,
+    component: path.resolve('src/templates/aboutMe.js'),
     context: {
       pathSlug: 'about',
       posts,
@@ -70,24 +68,26 @@ const createAboutPage = (createPage, posts) => {
   });
 };
 
+/**
+ * Creates the About navigation page
+ */
 const createPortfolioPage = createPage => {
-  const portfolioTemplate = path.resolve('src/templates/portfolio.js');
-
   createPage({
     path: '/portfolio',
-    component: portfolioTemplate,
+    component: path.resolve('src/templates/portfolio.js'),
     context: {
       pathSlug: 'portfolio',
     },
   });
 };
 
+/**
+ * Creates the Hobbies navigation page
+ */
 const createHobbiesPage = (createPage, posts) => {
-  const hobbiesPage = path.resolve('src/templates/hobbies.js');
-
   createPage({
     path: '/hobbies',
-    component: hobbiesPage,
+    component: path.resolve('src/templates/hobbies.js'),
     context: {
       pathSlug: 'hobbies',
       posts,
@@ -95,16 +95,14 @@ const createHobbiesPage = (createPage, posts) => {
   });
 };
 
-// creates the actual pages for each post based off of blogPost.js
+/**
+ * Creates the actual post pages based off src/templates/blogPost
+ */
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  // Blog post template returns as a promise due to async nature
   return new Promise((resolve, reject) => {
-    // path to blog post template
-    const blogPostTemplate = path.resolve('src/templates/blogPost.js');
-
-    // query to get the path of each blog post, title, and tags
+    // Creates all of the different pages associated with blog content
     resolve(
       graphql(
         `
@@ -134,45 +132,33 @@ exports.createPages = ({ graphql, actions }) => {
           posts = result.data.allMarkdownRemark.edges;
         }
 
-        // creates tags page
-        // path => /tags
         createTagPages(createPage, posts);
-
-        // creates portfolio page
         createPortfolioPage(createPage);
-
-        // creates blog home page
-        createAllBlogsPage(createPage, posts);
-
-        // create about me page
+        createBlogPage(createPage, posts);
         createAboutPage(createPage, posts);
 
-        // this will create a post for each of the paths
-        // index => index of path
         if (posts) {
           posts.forEach(({ node }, index) => {
-            const path = node.frontmatter.path;
+            const pathSlug = node.frontmatter.path;
 
             createPage({
-              path: `/blog/${path}`,
-              component: blogPostTemplate,
+              path: `/blog/${pathSlug}`,
+              component: path.resolve('src/templates/blogPost.js'),
               context: {
-                pathSlug: path,
+                pathSlug,
                 tag: node.frontmatter.tags,
                 prev: index === 0 ? null : posts[index - 1].node,
                 next: index === posts.length - 1 ? null : posts[index + 1].node,
                 type: 'blog',
               },
             });
-
-            // this resolve is to just let everything know that its done
             resolve();
           });
         }
       }),
     );
 
-    // query to get the path of each blog post, title, and tags
+    // Creates all of the different pages associated with hobbies content
     resolve(
       graphql(
         `
@@ -209,28 +195,24 @@ exports.createPages = ({ graphql, actions }) => {
           posts = result.data.allMarkdownRemark.edges;
         }
 
-        // creates blog home page
         createHobbiesPage(createPage, posts);
+        createTagPages(createPage, posts);
 
-        // this will create a post for each of the paths
-        // index => index of path
         if (posts) {
           posts.forEach(({ node }, index) => {
-            const path = node.frontmatter.path;
+            const pathSlug = node.frontmatter.path;
 
             createPage({
-              path: `/hobbies/${path}`,
-              component: blogPostTemplate,
+              path: `/hobbies/${pathSlug}`,
+              component: path.resolve('src/templates/blogPost.js'),
               context: {
-                pathSlug: path,
+                pathSlug,
                 tag: node.frontmatter.tags,
                 prev: index === 0 ? null : posts[index - 1].node,
                 next: index === posts.length - 1 ? null : posts[index + 1].node,
                 type: 'hobbies',
               },
             });
-
-            // this resolve is to just let everything know that its done
             resolve();
           });
         }
@@ -239,8 +221,10 @@ exports.createPages = ({ graphql, actions }) => {
   });
 };
 
-// this will utilize the custom theme for the semantic css framework
-exports.onCreateWebpackConfig = ({ stage, actions }) => {
+/**
+ * This will utilize the custom theme for the semantic css framework
+ */
+exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {

@@ -1,36 +1,49 @@
-import React, { Component } from 'react';
-import { graphql } from 'gatsby';
+import React, { Component, Fragment } from 'react';
+import { graphql, Link } from 'gatsby';
 import SiteLayout from '../components/SiteLayout';
-import HomeMainHeader from '../components/HomeMainHeader';
 import RecentPosts from '../components/RecentPosts';
 import RecentHobbies from '../components/RecentHobbies';
+import PageHeader from '../components/PageHeader';
 import 'semantic-ui-less/semantic.less';
 import './index.css';
 
 class Layout extends Component {
   render() {
     const { location, data } = this.props;
-    const { edges } = data.allMarkdownRemark;
     let hobbiesEdges;
     let blogEdges;
     let hobbiesImgSize;
 
-    if (edges) {
-      hobbiesEdges = edges.filter(value => {
+    if (data.allMarkdownRemark) {
+      hobbiesEdges = data.allMarkdownRemark.edges.filter(value => {
         const { tags, featuredImage } = value.node.frontmatter;
+
         if (tags.includes('hobbies')) {
           hobbiesImgSize = featuredImage.childImageSharp.sizes;
         }
+
         return tags.includes('hobbies');
       });
 
-      blogEdges = edges.filter(value => {
+      blogEdges = data.allMarkdownRemark.edges.filter(value => {
         const { tags } = value.node.frontmatter;
+
         return tags.includes('blog');
       });
     }
 
-    console.log(hobbiesEdges, 'hobbies edges');
+    const bottomSegment = (
+      <Fragment>
+        <p style={{ marginTop: '2rem' }}>Welcome to my page.</p>
+
+        <p>
+          A collection of <Link to="/blog">thoughts</Link>,{' '}
+          <Link to="/hobbies">hobbies</Link>, <Link to="/portfolio">projects</Link>, and
+          various things I am passionate about.
+        </p>
+      </Fragment>
+    );
+
     return (
       <SiteLayout
         lang="en"
@@ -39,11 +52,17 @@ class Layout extends Component {
         seoSlug="/"
         location={location}
       >
-        <HomeMainHeader />
+        <PageHeader
+          topSegment="Hey, I'm"
+          headerSegment="Daniel Kim."
+          bottomSegment={bottomSegment}
+        />
 
-        <RecentPosts edges={blogEdges} />
+        {blogEdges.length > 0 ? <RecentPosts edges={blogEdges} /> : null}
 
-        <RecentHobbies edges={hobbiesEdges} imgSizeSrc={hobbiesImgSize} />
+        {hobbiesEdges.length > 0 ? (
+          <RecentHobbies edges={hobbiesEdges} imgSizeSrc={hobbiesImgSize} />
+        ) : null}
       </SiteLayout>
     );
   }

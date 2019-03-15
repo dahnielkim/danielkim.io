@@ -1,48 +1,32 @@
 import React, { Component } from 'react';
-import { Link } from 'gatsby';
 import { Header, Container, Grid } from 'semantic-ui-react';
-import TagItem from '../TagItem';
-import { formatReadingTime, formatPostDate } from '../../utils/helpers';
+import TwoCurrentPosts from '../TwoCurrentPosts';
 
 /**
- * RecentPosts component displays the first 2 recent blog posts
- * on the home page
+ * RecentPosts component.
+ * Displays recent 2 posts and hobbies.
+ * props = edges
+ * edges = object (frontmatter)
  */
 class RecentPosts extends Component {
   render() {
-    const { edges } = this.props;
-
-    // first two recent posts in an array so that it can be mapped and rendered
-    const recentPostsArray = edges.slice(0, 2);
-    const renderCurrentPosts = recentPostsArray.map(posts => {
-      const { frontmatter, timeToRead } = posts.node;
+    const recentPostsArr = this.props.edges.slice(0, 2);
+    const renderCurrentPosts = recentPostsArr.map(post => {
+      const { frontmatter, timeToRead } = post.node;
+      const pathLink = `/blog/${frontmatter.path}`;
       const blogTag = frontmatter.tags.filter(tag => {
         return tag !== 'blog';
       });
-      const pathLink = `/blog/${frontmatter.path}`;
 
       return (
-        <Grid.Column computer={8} tablet={8} mobile={16} key={frontmatter.path}>
-          <Grid.Row>
-            <Link to={pathLink}>
-              <Header as="h3">{frontmatter.title}</Header>
-            </Link>
-          </Grid.Row>
-
-          <Grid.Row style={{ marginTop: '0.5rem', color: 'rgba(0, 0, 0, 0.4)' }}>
-            {frontmatter.excerpt}
-          </Grid.Row>
-
-          <Grid.Row style={{ marginTop: '0.5rem', color: 'rgba(0, 0, 0, 0.4)' }}>
-            {formatPostDate(frontmatter.date, 'en')}
-            {`${formatReadingTime(timeToRead)}`}
-            <TagItem tagLink={`/tags/${blogTag}`} tagName={blogTag} />
-          </Grid.Row>
-
-          <Grid.Row style={{ marginTop: '0.5rem' }}>
-            <Link to={pathLink}>Read more →</Link>
-          </Grid.Row>
-        </Grid.Column>
+        <TwoCurrentPosts
+          key={pathLink}
+          pathLink={pathLink}
+          frontmatter={frontmatter}
+          timeToRead={timeToRead}
+          blogTag={blogTag}
+          mainPage={true}
+        />
       );
     });
 

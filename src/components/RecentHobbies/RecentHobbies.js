@@ -1,43 +1,33 @@
 import React, { Component } from 'react';
-import { Link } from 'gatsby';
-import { Header, Container, Grid, Segment, Image, Label } from 'semantic-ui-react';
+import { Header, Container, Grid } from 'semantic-ui-react';
+import TwoCurrentHobbies from '../TwoCurrentHobbies';
 
 /**
  * RecentHobbies component displays the first 2 recent blog posts
  * on the home page
+ * props = edges, imgSizeSrc
+ * edges = hobbiesEdges
+ * imgSizeSrc = featuredImage.childImageSharp.sizes
  */
 class RecentHobbies extends Component {
   render() {
     const { edges } = this.props;
-
-    console.log(this.props.imgSizeSrc, 'props');
-
-    // first two recent posts in an array so that it can be mapped and rendered
     const recentHobbiesArray = edges.slice(0, 2);
-    const renderCurrentPosts = recentHobbiesArray.map(posts => {
-      const { frontmatter } = posts.node;
+    const renderCurrentPosts = recentHobbiesArray.map(post => {
+      const { frontmatter } = post.node;
+      const pathLink = `/hobbies/${frontmatter.path}`;
       const blogTag = frontmatter.tags.filter(tag => {
         return tag !== 'hobbies';
       });
-      const pathLink = `/hobbies/${frontmatter.path}`;
 
       return (
-        <Grid.Column computer={8} tablet={8} mobile={16} key={frontmatter.path}>
-          <Segment raise>
-            <Header as="h3">{frontmatter.title}</Header>
-            <Label color="blue" floating>
-              {blogTag}
-            </Label>
-            <Image
-              fluid
-              src={this.props.imgSizeSrc.src}
-              style={{ marginBottom: '2.5rem' }}
-            />
-            <Label attached="bottom">
-              <Link to={pathLink}>Explore the Adventure →</Link>
-            </Label>
-          </Segment>
-        </Grid.Column>
+        <TwoCurrentHobbies
+          key={pathLink}
+          pathLink={pathLink}
+          frontmatter={frontmatter}
+          blogTag={blogTag}
+          imageSrc={this.props.imgSizeSrc.src}
+        />
       );
     });
 
