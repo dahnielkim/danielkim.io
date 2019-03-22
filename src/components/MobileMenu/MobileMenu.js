@@ -36,6 +36,12 @@ const MobileMenu = ({ close, pathName }) => {
               About
             </Menu.Item>
           </Link>
+
+          <Link to="/uses">
+            <Menu.Item active={pathName === '/uses'} onClick={close}>
+              Uses
+            </Menu.Item>
+          </Link>
         </Menu>
       </Grid>
     </Container>

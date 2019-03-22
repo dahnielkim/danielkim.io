@@ -98,128 +98,150 @@ const createHobbiesPage = (createPage, posts) => {
 };
 
 /**
- * Creates the actual post pages based off src/templates/blogPost
+ * Creates the About navigation page
  */
-exports.createPages = ({ graphql, actions }) => {
+const createUsesPage = (createPage, assets) => {
+  createPage({
+    path: '/uses',
+    component: path.resolve('src/templates/uses.js'),
+    context: {
+      pathSlug: 'uses',
+      result: assets,
+    },
+  });
+};
+
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  return new Promise((resolve, reject) => {
-    // Creates all of the different pages associated with blog content
-    resolve(
-      graphql(
-        `
-          query {
-            allMarkdownRemark(
-              sort: { order: ASC, fields: [frontmatter___date] }
-              filter: { frontmatter: { tags: { eq: "blog" } } }
-            ) {
-              edges {
-                node {
-                  frontmatter {
-                    path
-                    title
-                    tags
-                    date
-                    excerpt
-                  }
-                  timeToRead
-                }
+  await graphql(
+    `
+      query {
+        allMarkdownRemark(
+          sort: { order: ASC, fields: [frontmatter___date] }
+          filter: { frontmatter: { tags: { eq: "blog" } } }
+        ) {
+          edges {
+            node {
+              frontmatter {
+                path
+                title
+                tags
+                date
+                excerpt
               }
+              timeToRead
             }
           }
-        `,
-      ).then(result => {
-        let posts;
-        if (result.data.allMarkdownRemark) {
-          posts = result.data.allMarkdownRemark.edges;
         }
+      }
+    `,
+  ).then(result => {
+    let posts;
+    if (result.data.allMarkdownRemark) {
+      posts = result.data.allMarkdownRemark.edges;
+    }
 
-        createTagPages(createPage, posts);
-        createPortfolioPage(createPage);
-        createBlogPage(createPage, posts);
-        createAboutPage(createPage, posts);
+    createTagPages(createPage, posts);
+    createPortfolioPage(createPage);
+    createBlogPage(createPage, posts);
+    createAboutPage(createPage, posts);
 
-        if (posts) {
-          posts.forEach(({ node }, index) => {
-            const pathSlug = node.frontmatter.path;
+    if (posts) {
+      posts.forEach(({ node }, index) => {
+        const pathSlug = node.frontmatter.path;
 
-            createPage({
-              path: `/blog/${pathSlug}`,
-              component: path.resolve('src/templates/blogPost.js'),
-              context: {
-                pathSlug,
-                tag: node.frontmatter.tags,
-                prev: index === 0 ? null : posts[index - 1].node,
-                next: index === posts.length - 1 ? null : posts[index + 1].node,
-                type: 'blog',
-              },
-            });
-            resolve();
-          });
-        }
-      }),
-    );
+        createPage({
+          path: `/blog/${pathSlug}`,
+          component: path.resolve('src/templates/blogPost.js'),
+          context: {
+            pathSlug,
+            tag: node.frontmatter.tags,
+            prev: index === 0 ? null : posts[index - 1].node,
+            next: index === posts.length - 1 ? null : posts[index + 1].node,
+            type: 'blog',
+          },
+        });
+      });
+    }
+  });
 
-    // Creates all of the different pages associated with hobbies content
-    resolve(
-      graphql(
-        `
-          query {
-            allMarkdownRemark(
-              sort: { order: DESC, fields: [frontmatter___date] }
-              filter: { frontmatter: { tags: { eq: "hobbies" } } }
-            ) {
-              edges {
-                node {
-                  frontmatter {
-                    path
-                    title
-                    tags
-                    date
-                    excerpt
-                    featuredImage {
-                      childImageSharp {
-                        fluid(maxWidth: 500) {
-                          src
-                        }
-                      }
+  await graphql(
+    `
+      query {
+        allMarkdownRemark(
+          sort: { order: DESC, fields: [frontmatter___date] }
+          filter: { frontmatter: { tags: { eq: "hobbies" } } }
+        ) {
+          edges {
+            node {
+              frontmatter {
+                path
+                title
+                tags
+                date
+                excerpt
+                featuredImage {
+                  childImageSharp {
+                    fluid(maxWidth: 500) {
+                      src
                     }
                   }
-                  timeToRead
                 }
               }
+              timeToRead
             }
           }
-        `,
-      ).then(result => {
-        let posts;
-        if (result.data.allMarkdownRemark) {
-          posts = result.data.allMarkdownRemark.edges;
         }
+      }
+    `,
+  ).then(result => {
+    let posts;
+    if (result.data.allMarkdownRemark) {
+      posts = result.data.allMarkdownRemark.edges;
+    }
 
-        createHobbiesPage(createPage, posts);
-        createTagPages(createPage, posts);
+    createHobbiesPage(createPage, posts);
+    createTagPages(createPage, posts);
 
-        if (posts) {
-          posts.forEach(({ node }, index) => {
-            const pathSlug = node.frontmatter.path;
+    if (posts) {
+      posts.forEach(({ node }, index) => {
+        const pathSlug = node.frontmatter.path;
 
-            createPage({
-              path: `/hobbies/${pathSlug}`,
-              component: path.resolve('src/templates/blogPost.js'),
-              context: {
-                pathSlug,
-                tag: node.frontmatter.tags,
-                prev: index === 0 ? null : posts[index - 1].node,
-                next: index === posts.length - 1 ? null : posts[index + 1].node,
-                type: 'hobbies',
-              },
-            });
-            resolve();
-          });
+        createPage({
+          path: `/hobbies/${pathSlug}`,
+          component: path.resolve('src/templates/blogPost.js'),
+          context: {
+            pathSlug,
+            tag: node.frontmatter.tags,
+            prev: index === 0 ? null : posts[index - 1].node,
+            next: index === posts.length - 1 ? null : posts[index + 1].node,
+            type: 'hobbies',
+          },
+        });
+      });
+    }
+  });
+
+  // TODO: need to fix this. it does not seem to load the image on the /uses page.
+  await graphql(
+    `
+      query {
+        file(relativePath: { eq: "assets/workstation_setup.png" }) {
+          childImageSharp {
+            sizes {
+              base64
+              aspectRatio
+              src
+              srcSet
+              sizes
+            }
+          }
         }
-      }),
-    );
+      }
+    `,
+  ).then(result => {
+    createUsesPage(createPage, result);
   });
 };
 

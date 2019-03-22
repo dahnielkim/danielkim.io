@@ -48,6 +48,10 @@ export default class Navigation extends Component {
                   <Link to="/about">
                     <Menu.Item name="about" active={pathname === '/about'} />
                   </Link>
+
+                  <Link to="/uses">
+                    <Menu.Item name="uses" active={pathname === '/uses'} />
+                  </Link>
                 </Menu.Menu>
               </Menu>
             </Grid.Column>
