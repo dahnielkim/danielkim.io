@@ -17,9 +17,10 @@ class UsesContent extends Component {
             DEVELOPMENT GEAR
           </Header>
 
-          <Grid.Row only="computer tablet">
-            <Img sizes={this.props.workstationPicSrc.childImageSharp.sizes} />
-          </Grid.Row>
+          <Img
+            style={{ width: '100%', marginTop: '1rem', marginBottom: '1rem' }}
+            sizes={this.props.workstationPicSrc.childImageSharp.sizes}
+          />
 
           <Grid.Row>
             <List>
