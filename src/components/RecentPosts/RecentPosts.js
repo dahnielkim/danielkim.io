@@ -13,9 +13,9 @@ class RecentPosts extends Component {
     const recentPostsArr = this.props.edges.slice(0, 2);
     const renderCurrentPosts = recentPostsArr.map(post => {
       const { frontmatter, timeToRead } = post.node;
-      const pathLink = `/blog/${frontmatter.path}`;
+      const pathLink = `/notes/${frontmatter.path}`;
       const blogTag = frontmatter.tags.filter(tag => {
-        return tag !== 'blog';
+        return tag !== 'notes';
       });
 
       return (
@@ -31,13 +31,13 @@ class RecentPosts extends Component {
     });
 
     return (
-      <Container style={{ marginTop: '6rem', marginBottom: '4rem' }}>
+      <Container style={{ marginTop: '6rem' }}>
         <Grid container columns={2}>
           <Header
             as="h3"
             style={{ letterSpacing: 10, color: 'rgba(0, 0, 0, 0.4)', marginBottom: 0 }}
           >
-            RECENT POSTS
+            RECENT NOTES
           </Header>
 
           <Grid.Row>{renderCurrentPosts}</Grid.Row>

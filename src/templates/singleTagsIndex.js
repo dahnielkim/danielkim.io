@@ -17,7 +17,7 @@ const SingleTagsTemplate = props => {
     </Fragment>
   );
 
-  // Gets the subURL => hobbies or blog
+  // Gets the subURL => hobbies or notes
   const subUrl = posts[0].frontmatter.tags.filter(tag => {
     return tag !== tagName;
   })[0];

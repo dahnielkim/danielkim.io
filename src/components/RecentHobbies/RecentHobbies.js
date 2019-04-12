@@ -32,7 +32,7 @@ class RecentHobbies extends Component {
     });
 
     return (
-      <Container style={{ marginTop: '6rem', marginBottom: '4rem' }}>
+      <Container style={{ marginTop: '6rem' }}>
         <Grid container columns={2}>
           <Header
             as="h3"

@@ -28,7 +28,7 @@ class Layout extends Component {
       blogEdges = data.allMarkdownRemark.edges.filter(value => {
         const { tags } = value.node.frontmatter;
 
-        return tags.includes('blog');
+        return tags.includes('notes');
       });
     }
 
@@ -37,7 +37,7 @@ class Layout extends Component {
         <p style={{ marginTop: '2rem' }}>Welcome to my page.</p>
 
         <p>
-          A collection of <Link to="/blog">thoughts</Link>,{' '}
+          A collection of <Link to="/notes">notes</Link>,{' '}
           <Link to="/hobbies">hobbies</Link>, <Link to="/portfolio">projects</Link>, and
           various things I am passionate about.
         </p>

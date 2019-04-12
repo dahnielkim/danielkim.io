@@ -15,9 +15,9 @@ class AllPosts extends Component {
     if (posts) {
       renderAllPosts = posts.map(post => {
         const { frontmatter, timeToRead } = post.node;
-        const pathLink = `/blog/${frontmatter.path}`;
+        const pathLink = `/notes/${frontmatter.path}`;
         const blogTag = frontmatter.tags.filter(tag => {
-          return tag !== 'blog';
+          return tag !== 'notes';
         });
 
         return (
@@ -38,13 +38,13 @@ class AllPosts extends Component {
     }
 
     return (
-      <Container style={{ marginTop: '6rem', marginBottom: '4rem' }}>
+      <Container style={{ marginTop: '6rem' }}>
         <Grid container columns={2}>
           <Header
             as="h3"
             style={{ letterSpacing: 10, color: 'rgba(0, 0, 0, 0.4)', marginBottom: 0 }}
           >
-            ALL POSTS
+            ALL NOTES
           </Header>
 
           <Grid.Row>{renderAllPosts}</Grid.Row>
