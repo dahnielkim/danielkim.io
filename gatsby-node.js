@@ -223,7 +223,6 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   });
 
-  // TODO: need to fix this. it does not seem to load the image on the /uses page.
   await graphql(
     `
       query {
