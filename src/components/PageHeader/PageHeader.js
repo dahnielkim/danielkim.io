@@ -1,5 +1,6 @@
 import React from 'react';
 import { Header, Container, Grid } from 'semantic-ui-react';
+import Img from 'gatsby-image';
 
 /**
  * PageHeader component. The reusable component for headers.
@@ -11,8 +12,8 @@ import { Header, Container, Grid } from 'semantic-ui-react';
 const PageHeader = props => {
   return (
     <Container>
-      <Grid container columns={1} style={{ marginTop: '3rem', marginBottom: '3rem' }}>
-        <Grid.Row style={{marginBottom: '2rem'}}>
+      <Grid container columns={2} style={{ marginTop: '3rem', marginBottom: '3rem' }}>
+        <Grid.Row style={{ marginBottom: '2rem' }}>
           <Grid.Column mobile={16} tablet={10} computer={8}>
             <p style={{ marginBottom: '1rem' }}>{props.topSegment}</p>
 
@@ -24,6 +25,19 @@ const PageHeader = props => {
             </Header>
 
             {props.bottomSegment ? props.bottomSegment : null}
+          </Grid.Column>
+
+          <Grid.Column only='computer tablet'>
+            <Img
+              style={{
+                width: '50%',
+                marginTop: '1rem',
+                marginBottom: '1rem',
+                marginRight: 'auto',
+                marginLeft: 'auto',
+              }}
+              sizes={props.logo}
+            />
           </Grid.Column>
         </Grid.Row>
       </Grid>

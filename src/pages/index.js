@@ -14,6 +14,8 @@ class Layout extends Component {
     let blogEdges;
     let hobbiesImgSize;
 
+    console.log(data, 'data');
+
     if (data.allMarkdownRemark) {
       hobbiesEdges = data.allMarkdownRemark.edges.filter(value => {
         const { tags, featuredImage } = value.node.frontmatter;
@@ -56,6 +58,7 @@ class Layout extends Component {
           topSegment="Hey, I'm"
           headerSegment="Daniel Kim."
           bottomSegment={bottomSegment}
+          logo={data.file.childImageSharp.sizes}
         />
 
         {blogEdges.length > 0 ? <RecentPosts edges={blogEdges} /> : null}
@@ -93,6 +96,24 @@ export const query = graphql`
       }
       totalCount
     }
+    file(relativePath: { eq: "assets/signature-logo.png" }) {
+      childImageSharp {
+        sizes {
+          base64
+          tracedSVG
+          aspectRatio
+          src
+          srcSet
+          srcWebp
+          srcSetWebp
+          sizes
+          originalImg
+          originalName
+          presentationWidth
+          presentationHeight
+        }
+      }
+}
   }
 `;
 
