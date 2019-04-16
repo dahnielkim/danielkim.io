@@ -14,8 +14,6 @@ class Layout extends Component {
     let blogEdges;
     let hobbiesImgSize;
 
-    console.log(data, 'data');
-
     if (data.allMarkdownRemark) {
       hobbiesEdges = data.allMarkdownRemark.edges.filter(value => {
         const { tags, featuredImage } = value.node.frontmatter;
