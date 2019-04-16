@@ -27,17 +27,19 @@ const PageHeader = props => {
             {props.bottomSegment ? props.bottomSegment : null}
           </Grid.Column>
 
-          <Grid.Column only='computer tablet'>
-            <Img
-              style={{
-                width: '50%',
-                marginTop: '1rem',
-                marginBottom: '1rem',
-                marginRight: 'auto',
-                marginLeft: 'auto',
-              }}
-              sizes={props.logo}
-            />
+          <Grid.Column only="computer tablet">
+            {props.logo ? (
+              <Img
+                style={{
+                  width: '50%',
+                  marginTop: '1rem',
+                  marginBottom: '1rem',
+                  marginRight: 'auto',
+                  marginLeft: 'auto',
+                }}
+                sizes={props.logo}
+              />
+            ) : null}
           </Grid.Column>
         </Grid.Row>
       </Grid>

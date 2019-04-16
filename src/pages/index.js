@@ -14,8 +14,10 @@ class Layout extends Component {
     let blogEdges;
     let hobbiesImgSize;
 
-    if (data.allMarkdownRemark) {
-      hobbiesEdges = data.allMarkdownRemark.edges.filter(value => {
+    console.log(this.props, 'props')
+
+    if (data.markdown) {
+      hobbiesEdges = data.markdown.edges.filter(value => {
         const { tags, featuredImage } = value.node.frontmatter;
 
         if (tags.includes('hobbies')) {
@@ -25,7 +27,7 @@ class Layout extends Component {
         return tags.includes('hobbies');
       });
 
-      blogEdges = data.allMarkdownRemark.edges.filter(value => {
+      blogEdges = data.markdown.edges.filter(value => {
         const { tags } = value.node.frontmatter;
 
         return tags.includes('notes');
@@ -71,7 +73,7 @@ class Layout extends Component {
 
 export const query = graphql`
   query HomepageQuery {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+    markdown: allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
       edges {
         node {
           excerptAst
@@ -94,7 +96,7 @@ export const query = graphql`
       }
       totalCount
     }
-    file(relativePath: { eq: "assets/signature-logo.png" }) {
+    file: file(relativePath: { eq: "assets/signature-logo.png" }) {
       childImageSharp {
         sizes {
           base64
@@ -111,7 +113,7 @@ export const query = graphql`
           presentationHeight
         }
       }
-}
+    }
   }
 `;
 
