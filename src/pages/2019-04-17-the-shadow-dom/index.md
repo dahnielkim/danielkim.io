@@ -3,7 +3,7 @@ path: 'the-shadow-dom'
 date: '2019-04-17'
 title: 'The Shadow DOM'
 tags: ['web development', 'notes']
-excerpt: 'There are 3 different terms regarding the shadow DOM.'
+excerpt: 'This note goes over what the shadow DOM is and how to create one. There are 3 different terms regarding the shadow DOM.'
 featuredImage: './shadow-dom.jpg'
 ---
 
