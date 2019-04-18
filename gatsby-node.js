@@ -98,7 +98,7 @@ const createHobbiesPage = (createPage, posts) => {
 };
 
 /**
- * Creates the About navigation page
+ * Creates the Uses navigation page
  */
 const createUsesPage = (createPage, assets) => {
   createPage({

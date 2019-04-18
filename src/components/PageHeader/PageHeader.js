@@ -15,7 +15,7 @@ const PageHeader = props => {
       <Grid container columns={2} style={{ marginTop: '3rem', marginBottom: '3rem' }}>
         <Grid.Row style={{ marginBottom: '2rem' }}>
           <Grid.Column mobile={16} tablet={10} computer={8}>
-            <p style={{ marginBottom: '1rem' }}>{props.topSegment}</p>
+            {props.topSegment ? <p style={{ marginBottom: '1rem' }}>{props.topSegment}</p> : null}
 
             <Header
               as="h1"

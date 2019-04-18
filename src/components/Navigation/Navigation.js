@@ -4,6 +4,7 @@ import { Link } from 'gatsby';
 import Popup from 'reactjs-popup';
 import BurgerIcon from '../BurgerIcon';
 import MobileMenu from '../MobileMenu';
+import Particles from 'react-particles-js';
 import './Navigation.css';
 
 /**
@@ -15,8 +16,48 @@ export default class Navigation extends Component {
 
     return (
       <Container>
-        <Grid container columns={1}>
+        <Grid container columns={1} style={{ position: 'relative', zIndex: 1000, marginBottom: '2rem' }}>
           <Grid.Row only="computer tablet">
+            <Particles
+              style={{
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                top: 0,
+                zIndex: 0,
+                opacity: 0.4,
+                borderBottom: '1px solid rgb(238, 238, 238)',
+              }}
+              height={90}
+              params={{
+                particles: {
+                  color: {
+                    value: '#000000',
+                  },
+                  number: {
+                    value: 50,
+                  },
+                  size: {
+                    value: 1,
+                  },
+                  line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#000000',
+                    opacity: 0.4,
+                    width: 1,
+                  },
+                },
+                interactivity: {
+                  events: {
+                    onhover: {
+                      enable: true,
+                      mode: 'repulse',
+                    },
+                  },
+                },
+              }}
+            />
             <Grid.Column>
               <Menu secondary pointing borderless stackable>
                 <Menu.Item style={{ paddingLeft: 0 }}>
@@ -37,9 +78,9 @@ export default class Navigation extends Component {
                     <Menu.Item name="notes" active={pathname.includes(`/notes`)} />
                   </Link>
 
-                  <Link to="/hobbies">
+                  {/* <Link to="/hobbies">
                     <Menu.Item name="hobbies" active={pathname.includes('/hobbies')} />
-                  </Link>
+                  </Link> */}
 
                   <Link to="/portfolio">
                     <Menu.Item name="portfolio" active={pathname === '/portfolio'} />
