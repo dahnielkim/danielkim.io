@@ -1,15 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import SiteLayout from '../components/SiteLayout';
 import PageHeader from '../components/PageHeader';
 import UsesContent from '../components/UsesContent';
 
 const Uses = props => {
-  const bottomSegment = (
-    <Fragment>
-      <p style={{ marginTop: '2rem' }}>Here is what I like use.</p>
-    </Fragment>
-  );
-
   return (
     <SiteLayout
       lang="en"
@@ -18,11 +12,7 @@ const Uses = props => {
       seoSlug={`/${props.pageContext.pathSlug}`}
       location={props.location}
     >
-      <PageHeader
-        topSegment="It's my"
-        headerSegment="Setup."
-        bottomSegment={bottomSegment}
-      />
+      <PageHeader topSegment="Here is my" headerSegment="Setup." />
 
       <UsesContent workstationPicSrc={props.pageContext.result.data.file} />
     </SiteLayout>

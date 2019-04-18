@@ -33,10 +33,10 @@ const Template = props => {
       seoSlug={`/${pageContext.pathSlug}`}
       location={location}
     >
-      <Container style={{ marginTop: '1rem' }}>
+      <Container>
         {imgSizes ? <Img sizes={imgSizes} /> : null}
 
-        <Grid container columns={1} style={{ marginTop: '1rem', marginBottom: '1rem' }}>
+        <Grid container columns={1} style={{ marginTop: '3rem', marginBottom: '1rem' }}>
           <Grid.Row>
             <Grid.Column>
               <Grid.Row style={{ marginBottom: '1rem' }}>

@@ -4,8 +4,7 @@ import TwoCurrentPosts from '../TwoCurrentPosts';
 import NoPosts from '../NoPosts';
 
 /**
- * AllPosts component displays the first 2 recent blog posts
- * on the home page
+ * AllPosts component displays the first 2 recent blog posts on the home page
  */
 class AllPosts extends Component {
   render() {
@@ -38,7 +37,7 @@ class AllPosts extends Component {
     }
 
     return (
-      <Container style={{ marginTop: '6rem' }}>
+      <Container style={{ marginTop: '2rem' }}>
         <Grid container columns={2}>
           <Header
             as="h3"

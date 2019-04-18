@@ -31,7 +31,7 @@ const AllTagsTemplate = props => {
       <Container>
         <Grid>
           <Grid.Column>
-            <ul style={{ marginTop: '-2rem', marginBottom: '4rem' }}>
+            <ul style={{ marginTop: '-2rem', marginBottom: '5rem' }}>
               {tags.map((tagName, index) => {
                 return (
                   <li key={index}>

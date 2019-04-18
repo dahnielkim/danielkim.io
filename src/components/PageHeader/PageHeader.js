@@ -12,10 +12,12 @@ import Img from 'gatsby-image';
 const PageHeader = props => {
   return (
     <Container>
-      <Grid container columns={2} style={{ marginTop: '3rem', marginBottom: '3rem' }}>
+      <Grid container columns={2} style={{ marginTop: '3rem' }}>
         <Grid.Row style={{ marginBottom: '2rem' }}>
           <Grid.Column mobile={16} tablet={10} computer={8}>
-            {props.topSegment ? <p style={{ marginBottom: '1rem' }}>{props.topSegment}</p> : null}
+            {props.topSegment ? (
+              <p style={{ marginBottom: '1rem' }}>{props.topSegment}</p>
+            ) : null}
 
             <Header
               as="h1"

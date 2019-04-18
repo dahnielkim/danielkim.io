@@ -8,7 +8,7 @@ import Img from 'gatsby-image';
 class UsesContent extends Component {
   render() {
     return (
-      <Container style={{ marginTop: '3rem', marginBottom: '4rem' }}>
+      <Container style={{ marginTop: '3rem', marginBottom: '5rem' }}>
         <Grid container columns={2}>
           <Header
             as="h3"

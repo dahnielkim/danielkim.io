@@ -37,7 +37,7 @@ class RecentPosts extends Component {
             as="h3"
             style={{ letterSpacing: 10, color: 'rgba(0, 0, 0, 0.4)', marginBottom: 0 }}
           >
-            RECENT ARTICLES
+            LATEST ARTICLES
           </Header>
 
           <Grid.Row>{renderCurrentPosts}</Grid.Row>

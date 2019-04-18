@@ -16,7 +16,11 @@ export default class Navigation extends Component {
 
     return (
       <Container>
-        <Grid container columns={1} style={{ position: 'relative', zIndex: 1000, marginBottom: '2rem' }}>
+        <Grid
+          container
+          columns={1}
+          style={{ position: 'relative', zIndex: 1000, marginBottom: 0 }}
+        >
           <Grid.Row only="computer tablet">
             <Particles
               style={{

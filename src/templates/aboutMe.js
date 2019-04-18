@@ -17,7 +17,7 @@ const AboutMe = props => {
       <Container>
         <Grid>
           <Grid.Column>
-            <Grid.Row style={{ marginBottom: '4rem' }}>
+            <Grid.Row style={{ marginBottom: '5rem' }}>
               <p>
                 This website is a compilation of articles and musings written by{' '}
                 <Link to="/">Daniel Kim</Link> on various topics ranging from design,
