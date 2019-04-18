@@ -2,12 +2,12 @@
 path: 'the-shadow-dom'
 date: '2019-04-17'
 title: 'The Shadow DOM'
-tags: ['web development', 'notes']
-excerpt: 'This note goes over what the shadow DOM is and how to create one. There are 3 different terms regarding the shadow DOM.'
+tags: ['web development', 'articles']
+excerpt: 'This article goes over what the shadow DOM is and how to create one. There are 3 different terms regarding the shadow DOM.'
 featuredImage: './shadow-dom.jpg'
 ---
 
-This note goes over what the shadow DOM is and how to create one.
+This article goes over what the shadow DOM is and how to create one.
 
 ### <u>Terms</u>
 There are 3 different terms regarding the shadow DOM.

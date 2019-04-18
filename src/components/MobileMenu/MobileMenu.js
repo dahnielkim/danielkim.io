@@ -13,9 +13,9 @@ const MobileMenu = ({ close, pathName }) => {
             </Menu.Item>
           </Link>
 
-          <Link to="/notes">
-            <Menu.Item active={pathName.includes('/notes')} onClick={close}>
-              Notes
+          <Link to="/articles">
+            <Menu.Item active={pathName.includes('/articles')} onClick={close}>
+              Articles
             </Menu.Item>
           </Link>
 

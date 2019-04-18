@@ -15,9 +15,9 @@ class AllPosts extends Component {
     if (posts) {
       renderAllPosts = posts.map(post => {
         const { frontmatter, timeToRead } = post.node;
-        const pathLink = `/notes/${frontmatter.path}`;
+        const pathLink = `/articles/${frontmatter.path}`;
         const blogTag = frontmatter.tags.filter(tag => {
-          return tag !== 'notes';
+          return tag !== 'articles';
         });
 
         return (
@@ -44,7 +44,7 @@ class AllPosts extends Component {
             as="h3"
             style={{ letterSpacing: 10, color: 'rgba(0, 0, 0, 0.4)', marginBottom: 0 }}
           >
-            ALL NOTES
+            ALL ARTICLES
           </Header>
 
           <Grid.Row>{renderAllPosts}</Grid.Row>

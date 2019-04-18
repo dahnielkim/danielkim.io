@@ -5,18 +5,18 @@ import AllPosts from '../components/AllPosts';
 
 /**
  * AllBlogPostsTemplate component.
- * Notes main page.
+ * Articles main page.
  */
 const AllBlogPostsTemplate = props => {
   return (
     <SiteLayout
       lang="en"
-      seoTitle="Notes"
-      seoDesc="Notes page for Daniel Kim"
+      seoTitle="Articles"
+      seoDesc="Articles page for Daniel Kim"
       seoSlug={`/${props.pageContext.pathSlug}`}
       location={props.location}
     >
-      <PageHeader topSegment="It's my" headerSegment="Notes." />
+      <PageHeader topSegment="It's my" headerSegment="Articles." />
 
       <AllPosts posts={props.pageContext.posts} />
     </SiteLayout>

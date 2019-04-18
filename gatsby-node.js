@@ -43,14 +43,14 @@ const createTagPages = (createPage, posts) => {
 };
 
 /**
- * Creates the Notes navigation page
+ * Creates the Articles navigation page
  */
 const createBlogPage = (createPage, posts) => {
   createPage({
-    path: '/notes',
+    path: '/articles',
     component: path.resolve('src/templates/allBlogs.js'),
     context: {
-      pathSlug: 'notes',
+      pathSlug: 'articles',
       posts,
     },
   });
@@ -119,7 +119,7 @@ exports.createPages = async ({ graphql, actions }) => {
       query {
         allMarkdownRemark(
           sort: { order: ASC, fields: [frontmatter___date] }
-          filter: { frontmatter: { tags: { eq: "notes" } } }
+          filter: { frontmatter: { tags: { eq: "articles" } } }
         ) {
           edges {
             node {
@@ -152,14 +152,14 @@ exports.createPages = async ({ graphql, actions }) => {
         const pathSlug = node.frontmatter.path;
 
         createPage({
-          path: `/notes/${pathSlug}`,
+          path: `/articles/${pathSlug}`,
           component: path.resolve('src/templates/blogPost.js'),
           context: {
             pathSlug,
             tag: node.frontmatter.tags,
             prev: index === 0 ? null : posts[index - 1].node,
             next: index === posts.length - 1 ? null : posts[index + 1].node,
-            type: 'notes',
+            type: 'articles',
           },
         });
       });

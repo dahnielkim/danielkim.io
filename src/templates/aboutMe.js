@@ -19,10 +19,10 @@ const AboutMe = props => {
           <Grid.Column>
             <Grid.Row style={{ marginBottom: '4rem' }}>
               <p>
-                This website is a compilation of notes, articles, and musings written by{' '}
+                This website is a compilation of articles and musings written by{' '}
                 <Link to="/">Daniel Kim</Link> on various topics ranging from design,
                 development, creativity, religion, etc. Currently, I have written a total
-                of <Link to="/notes">{props.pageContext.posts.length}</Link> posts.
+                of <Link to="/articles">{props.pageContext.posts.length}</Link> posts.
               </p>
               <p>
                 Originally a process control design engineer working in the pharmaceutical

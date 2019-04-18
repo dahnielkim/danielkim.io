@@ -2,14 +2,14 @@
 path: 'setting-up-blog'
 date: '2019-02-26'
 title: 'Setting up a blog with Gatsby, React, and MD'
-tags: ['gatsby', 'notes']
+tags: ['gatsby', 'articles']
 featuredImage: './blog-1.jpg'
-excerpt: 'As the initial note, I wanted to share the technology associated with this website and the basic setup process that may help some other devs create their own websites.'
+excerpt: 'As the initial article, I wanted to share the technology associated with this website and the basic setup process that may help some other devs create their own websites.'
 ---
 
-As the initial note, I wanted to share the technology associated with this website and the basic setup process that may help some other devs create their own websites.
+As the initial article, I wanted to share the technology associated with this website and the basic setup process that may help some other devs create their own websites.
 
-This note consists of the following technology:
+This webpage consists of the following technology:
 
 - GatsbyJS
 - GraphQL
