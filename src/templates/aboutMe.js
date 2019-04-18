@@ -25,14 +25,15 @@ const AboutMe = props => {
         <p>
           Originally a process control design engineer working in the pharmaceutical /
           biotech industry, I converted to software development due to my love for
-          creating things. I am blessed and privileged to spend everyday doing what I
-          love.
+          creating and solving things. I am blessed and privileged to spend everyday doing
+          what I love.
         </p>
         <p>
-          Since the summer of 2018, I have found been calling the beautiful city of San
-          Francisco my home. Having spent most of my life in North Carolina, I travelled
-          across the country in hopes of challenging myself both as a developer and as an
-          individual. What a wonderful experience is has been thus far!
+          Since the summer of 2018, I have been calling the beautiful city of{' '}
+          <a href="https://en.wikipedia.org/wiki/San_Francisco">San Francisco</a> my home.
+          Having spent most of my life in North Carolina, I travelled across the country
+          in hopes of challenging myself both as a developer and as an individual. What a
+          wonderful experience is has been thus far!
         </p>
         <p>
           I love learning new ways to solve old problems. Technology, food, and weight
@@ -64,7 +65,7 @@ const AboutMe = props => {
           . You can also checkout my{' '}
           <a
             rel="noopener noreferrer"
-            href={withPrefix('assets/Resume_2019.pdf')}
+            href={withPrefix('assets/resume.pdf')}
             target="_blank"
           >
             resume

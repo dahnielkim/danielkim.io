@@ -17,8 +17,8 @@ const AllTagsTemplate = props => {
   return (
     <SiteLayout
       lang="en"
-      seoTitle="Hobbies"
-      seoDesc="Hobbies page for Daniel Kim"
+      seoTitle="Tags"
+      seoDesc="Articles associated with a certain tag on danielkim.io"
       seoSlug={`/${props.pageContext.pathSlug}`}
       location={props.location}
     >

@@ -3,10 +3,6 @@ import SiteLayout from '../components/SiteLayout';
 import PageHeader from '../components/PageHeader';
 import AllPosts from '../components/AllPosts';
 
-/**
- * AllBlogPostsTemplate component.
- * Articles main page.
- */
 const AllBlogPostsTemplate = props => {
   return (
     <SiteLayout

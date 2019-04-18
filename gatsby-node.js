@@ -1,8 +1,6 @@
 const path = require('path');
 
-/**
- * Creates tag pages for single tags and all tags
- */
+// Creates tag pages for single tags and all tags
 const createTagPages = (createPage, posts) => {
   const postsByTag = {};
 
@@ -42,10 +40,8 @@ const createTagPages = (createPage, posts) => {
   });
 };
 
-/**
- * Creates the Articles navigation page
- */
-const createBlogPage = (createPage, posts) => {
+// Creates the Articles navigation page
+const createArticlesPage = (createPage, posts) => {
   createPage({
     path: '/articles',
     component: path.resolve('src/templates/allBlogs.js'),
@@ -56,9 +52,7 @@ const createBlogPage = (createPage, posts) => {
   });
 };
 
-/**
- * Creates the About navigation page
- */
+// Creates the About navigation page
 const createAboutPage = (createPage, posts) => {
   createPage({
     path: '/about',
@@ -70,36 +64,18 @@ const createAboutPage = (createPage, posts) => {
   });
 };
 
-/**
- * Creates the About navigation page
- */
-const createPortfolioPage = createPage => {
-  createPage({
-    path: '/portfolio',
-    component: path.resolve('src/templates/portfolio.js'),
-    context: {
-      pathSlug: 'portfolio',
-    },
-  });
-};
+// Creates the About page
+// const createPortfolioPage = createPage => {
+//   createPage({
+//     path: '/portfolio',
+//     component: path.resolve('src/templates/portfolio.js'),
+//     context: {
+//       pathSlug: 'portfolio',
+//     },
+//   });
+// };
 
-/**
- * Creates the Hobbies navigation page
- */
-const createHobbiesPage = (createPage, posts) => {
-  createPage({
-    path: '/hobbies',
-    component: path.resolve('src/templates/hobbies.js'),
-    context: {
-      pathSlug: 'hobbies',
-      posts,
-    },
-  });
-};
-
-/**
- * Creates the Uses navigation page
- */
+// Creates the Uses page
 const createUsesPage = (createPage, assets) => {
   createPage({
     path: '/uses',
@@ -111,6 +87,7 @@ const createUsesPage = (createPage, assets) => {
   });
 };
 
+// Export function that creates pages
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
@@ -138,85 +115,27 @@ exports.createPages = async ({ graphql, actions }) => {
     `,
   ).then(result => {
     let posts;
+
     if (result.data.allMarkdownRemark) {
       posts = result.data.allMarkdownRemark.edges;
     }
 
     createTagPages(createPage, posts);
-    createPortfolioPage(createPage);
-    createBlogPage(createPage, posts);
+    // createPortfolioPage(createPage);
+    createArticlesPage(createPage, posts);
     createAboutPage(createPage, posts);
 
     if (posts) {
       posts.forEach(({ node }, index) => {
-        const pathSlug = node.frontmatter.path;
-
         createPage({
-          path: `/articles/${pathSlug}`,
+          path: `/articles/${node.frontmatter.path}`,
           component: path.resolve('src/templates/blogPost.js'),
           context: {
-            pathSlug,
+            pathSlug: node.frontmatter.path,
             tag: node.frontmatter.tags,
             prev: index === 0 ? null : posts[index - 1].node,
             next: index === posts.length - 1 ? null : posts[index + 1].node,
             type: 'articles',
-          },
-        });
-      });
-    }
-  });
-
-  await graphql(
-    `
-      query {
-        allMarkdownRemark(
-          sort: { order: DESC, fields: [frontmatter___date] }
-          filter: { frontmatter: { tags: { eq: "hobbies" } } }
-        ) {
-          edges {
-            node {
-              frontmatter {
-                path
-                title
-                tags
-                date
-                excerpt
-                featuredImage {
-                  childImageSharp {
-                    fluid(maxWidth: 500) {
-                      src
-                    }
-                  }
-                }
-              }
-              timeToRead
-            }
-          }
-        }
-      }
-    `,
-  ).then(result => {
-    let posts;
-    if (result.data.allMarkdownRemark) {
-      posts = result.data.allMarkdownRemark.edges;
-    }
-
-    createHobbiesPage(createPage, posts);
-    createTagPages(createPage, posts);
-
-    if (posts) {
-      posts.forEach(({ node }, index) => {
-        const pathSlug = node.frontmatter.path;
-
-        createPage({
-          path: `/hobbies/${pathSlug}`,
-          component: path.resolve('src/templates/blogPost.js'),
-          context: {
-            pathSlug,
-            tag: node.frontmatter.tags,
-            prev: index === 0 ? null : posts[index - 1].node,
-            next: index === posts.length - 1 ? null : posts[index + 1].node,
-            type: 'hobbies',
           },
         });
       });
@@ -244,9 +163,7 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 };
 
-/**
- * This will utilize the custom theme for the semantic css framework
- */
+// This will utilize the custom theme for the semantic css framework
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {

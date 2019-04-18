@@ -2,33 +2,17 @@ import React, { Component, Fragment } from 'react';
 import { graphql, Link } from 'gatsby';
 import SiteLayout from '../components/SiteLayout';
 import RecentPosts from '../components/RecentPosts';
-import RecentHobbies from '../components/RecentHobbies';
 import PageHeader from '../components/PageHeader';
 import 'semantic-ui-less/semantic.less';
 import './index.css';
 
 class Layout extends Component {
   render() {
-    const { location, data } = this.props;
-    let hobbiesEdges;
-    let blogEdges;
-    let hobbiesImgSize;
+    let blogEdges = [];
 
-    if (data.markdown) {
-      hobbiesEdges = data.markdown.edges.filter(value => {
-        const { tags, featuredImage } = value.node.frontmatter;
-
-        if (tags.includes('hobbies')) {
-          hobbiesImgSize = featuredImage.childImageSharp.sizes;
-        }
-
-        return tags.includes('hobbies');
-      });
-
-      blogEdges = data.markdown.edges.filter(value => {
-        const { tags } = value.node.frontmatter;
-
-        return tags.includes('articles');
+    if (this.props.data.markdown) {
+      blogEdges = this.props.data.markdown.edges.filter(value => {
+        return value.node.frontmatter.tags.includes('articles');
       });
     }
 
@@ -53,22 +37,18 @@ class Layout extends Component {
       <SiteLayout
         lang="en"
         seoTitle="DANIELKIM.IO"
-        seoDesc="Thoughts and topics of various things I am passionate about"
+        seoDesc="Welcome to danielkim.io. Let's share experiences!"
         seoSlug="/"
-        location={location}
+        location={this.props.location}
       >
         <PageHeader
           topSegment="Hey, I'm"
           headerSegment="Daniel Kim."
           bottomSegment={bottomSegment}
-          logo={data.file.childImageSharp.sizes}
+          logo={this.props.data.file.childImageSharp.sizes}
         />
 
         {blogEdges.length > 0 ? <RecentPosts edges={blogEdges} /> : null}
-
-        {hobbiesEdges.length > 0 ? (
-          <RecentHobbies edges={hobbiesEdges} imgSizeSrc={hobbiesImgSize} />
-        ) : null}
       </SiteLayout>
     );
   }

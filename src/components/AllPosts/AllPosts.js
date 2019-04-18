@@ -8,31 +8,25 @@ import NoPosts from '../NoPosts';
  */
 class AllPosts extends Component {
   render() {
-    const { posts } = this.props;
-    let renderAllPosts;
+    let renderAllPosts = [];
 
-    if (posts) {
-      renderAllPosts = posts.map(post => {
-        const { frontmatter, timeToRead } = post.node;
-        const pathLink = `/articles/${frontmatter.path}`;
-        const blogTag = frontmatter.tags.filter(tag => {
-          return tag !== 'articles';
-        });
+    if (this.props.posts) {
+      renderAllPosts = this.props.posts.map(post => {
+        const pathLink = `/articles/${post.node.frontmatter.path}`;
+        const blogTag = post.node.frontmatter.tags.filter(tag => tag !== 'articles');
 
         return (
           <TwoCurrentPosts
             key={pathLink}
             pathLink={pathLink}
-            frontmatter={frontmatter}
-            timeToRead={timeToRead}
+            frontmatter={post.node.frontmatter}
+            timeToRead={post.node.timeToRead}
             blogTag={blogTag}
             mainPage={false}
           />
         );
       });
-    }
-    // When there are no posts
-    else {
+    } else {
       return <NoPosts />;
     }
 

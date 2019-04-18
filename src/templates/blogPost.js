@@ -7,9 +7,7 @@ import SiteLayout from '../components/SiteLayout';
 import BlogFooter from '../components/BlogFooter';
 import { formatPostDate, formatReadingTime } from '../utils/helpers';
 
-/**
- * Template component for all blog posts
- */
+// Template component for all blog posts
 const Template = props => {
   const { pageContext, data, location } = props;
 
@@ -17,10 +15,9 @@ const Template = props => {
   const { next, prev } = pageContext;
   const { markdownRemark } = data;
   const html = markdownRemark.html;
-  const blogTag = pageContext.tag.filter(tag => {
-    return tag !== pageContext.type;
-  });
+  const blogTag = pageContext.tag.filter(tag => tag !== pageContext.type);
   let imgSizes;
+
   if (markdownRemark.frontmatter.featuredImage) {
     imgSizes = markdownRemark.frontmatter.featuredImage.childImageSharp.sizes;
   }

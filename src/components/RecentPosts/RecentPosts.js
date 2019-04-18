@@ -4,7 +4,7 @@ import TwoCurrentPosts from '../TwoCurrentPosts';
 
 /**
  * RecentPosts component.
- * Displays recent 2 posts and hobbies.
+ * Displays recent 2 articles.
  * props = edges
  * edges = object (frontmatter)
  */

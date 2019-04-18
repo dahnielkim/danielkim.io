@@ -9,7 +9,7 @@ const Uses = props => {
     <SiteLayout
       lang="en"
       seoTitle="Uses"
-      seoDesc="Uses page for Daniel Kim"
+      seoDesc="Page that outlines Daniel Kim's setup"
       seoSlug={`/${props.pageContext.pathSlug}`}
       location={props.location}
     >
