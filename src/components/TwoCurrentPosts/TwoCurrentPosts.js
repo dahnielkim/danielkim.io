@@ -16,7 +16,7 @@ const TwoCurrentPosts = props => {
       tablet={props.mainPage ? 8 : 16}
       mobile={16}
       key={props.frontmatter.path}
-      style={{marginBottom: '3rem'}}
+      style={{ marginBottom: '3rem' }}
     >
       <Grid.Row>
         <Link to={props.pathLink}>

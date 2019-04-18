@@ -2,6 +2,7 @@ import React from 'react';
 import SiteLayout from '../components/SiteLayout';
 import PageHeader from '../components/PageHeader';
 import UsesContent from '../components/UsesContent';
+import OneColumnWrapper from '../components/OneColumnWrapper';
 
 const Uses = props => {
   return (
@@ -14,7 +15,9 @@ const Uses = props => {
     >
       <PageHeader topSegment="Here is my" headerSegment="Setup." />
 
-      <UsesContent workstationPicSrc={props.pageContext.result.data.file} />
+      <OneColumnWrapper>
+        <UsesContent workstationPicSrc={props.pageContext.result.data.file} />
+      </OneColumnWrapper>
     </SiteLayout>
   );
 };

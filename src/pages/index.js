@@ -37,9 +37,15 @@ class Layout extends Component {
         <p style={{ marginTop: '2rem' }}>Welcome to my page.</p>
 
         <p>
+          A collection of <Link to="/articles">articles</Link> and various things I am
+          passionate about.
+        </p>
+
+        {/* TODO: once portfolio is finished, use this */}
+        {/* <p>
           A collection of <Link to="/articles">articles</Link>,{' '}
           <Link to="/portfolio">projects</Link>, and various things I am passionate about.
-        </p>
+        </p> */}
       </Fragment>
     );
 

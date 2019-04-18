@@ -37,7 +37,7 @@ class AllPosts extends Component {
     }
 
     return (
-      <Container style={{ marginTop: '2rem' }}>
+      <Container style={{ marginTop: '2rem', marginBottom: '3rem' }}>
         <Grid container columns={2}>
           <Header
             as="h3"
