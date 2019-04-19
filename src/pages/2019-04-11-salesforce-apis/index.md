@@ -3,10 +3,10 @@ path: 'salesforce-apis'
 date: '2019-04-11'
 title: 'Different Salesforce APIs'
 tags: ['salesforce', 'articles']
-excerpt: 'There are many different types of APIs when it comes to Salesforce. This article will go through the differences between all of the most common ones'
+excerpt: 'Lately, I have been looking into the different APIs that are provided by Salesforce for development. As a result, I wrote this article to write down the differences between the most common ones.'
 ---
 
-There are many different types of APIs when it comes to Salesforce. This article will go through the differences between all of the most common ones.
+Lately, I have been looking into the different APIs that are provided by Salesforce for development. As a result, I wrote this article to write down the differences between the most common ones.
 
 1. SOAP API
    - SOAP API uses a SOAP wrapper for API operations.
