@@ -68,7 +68,7 @@ export default class Navigation extends Component {
                   <Link to="/">
                     <Image
                       style={{ height: 45 }}
-                      src="/assets/profile_pic_circular.png"
+                      src="/assets/personal_logo.svg"
                     />
                   </Link>
                 </Menu.Item>
