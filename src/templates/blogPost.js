@@ -5,6 +5,7 @@ import { Header, Container, Grid } from 'semantic-ui-react';
 import TagItem from '../components/TagItem';
 import SiteLayout from '../components/SiteLayout';
 import BlogFooter from '../components/BlogFooter';
+import ArticleFooter from '../components/ArticleFooter';
 import { formatPostDate, formatReadingTime } from '../utils/helpers';
 
 // Template component for all blog posts
@@ -49,6 +50,8 @@ const Template = props => {
               <div dangerouslySetInnerHTML={{ __html: html }} />
 
               <BlogFooter prev={prev} next={next} type={pageContext.type} />
+
+              <ArticleFooter />
             </Grid.Column>
           </Grid.Row>
         </Grid>
