@@ -5,3 +5,7 @@
 .blog-next-nav {
     float: right;
 }
+
+.dkim-footer-container {
+    margin-top: 2rem;
+}

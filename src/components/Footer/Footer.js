@@ -1,18 +1,11 @@
 import React from 'react';
-import { Link } from 'gatsby';
-import { Grid, Image, Container, List, Divider } from 'semantic-ui-react';
+import { Grid, Container, List, Divider } from 'semantic-ui-react';
 
 const Footer = () => (
   <Container textAlign="center">
     <Divider style={{ marginBottom: '2rem' }} />
 
     <Grid container textAlign="center">
-      <Grid.Row>
-        <Link to="/">
-          <Image style={{ height: 45 }} src="/assets/profile_pic_circular.png" />
-        </Link>
-      </Grid.Row>
-
       <Grid.Row>
         <List horizontal divided link size="small">
           <List.Item
@@ -37,22 +30,6 @@ const Footer = () => (
             href="https://www.twitter.com/dahnielkim"
           >
             Twitter
-          </List.Item>
-        </List>
-      </Grid.Row>
-
-      <Grid.Row style={{ paddingTop: 0 }}>
-        <List horizontal divided link size="small">
-          <List.Item style={{ color: 'black' }} as="a" href="https://ko-fi.com/A0A8S20V">
-            <a href="https://ko-fi.com/A0A8S20V">
-              <img
-                height="36"
-                style={{ border: 0, height: 36 }}
-                src="https://az743702.vo.msecnd.net/cdn/kofi2.png?v=0"
-                border="0"
-                alt="Buy Me a Coffee"
-              />
-            </a>
           </List.Item>
         </List>
       </Grid.Row>
