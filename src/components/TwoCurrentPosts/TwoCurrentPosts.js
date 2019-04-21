@@ -36,7 +36,7 @@ const TwoCurrentPosts = props => {
         <TagItem tagLink={`/tags/${props.blogTag}`} tagName={props.blogTag} />
       </Grid.Row>
 
-      <Grid.Row style={{ marginTop: '0.5rem' }}>
+      <Grid.Row style={{ marginTop: '0.5rem' }} className="dkim-link">
         <Link to={props.pathLink}>Read more →</Link>
       </Grid.Row>
     </Grid.Column>

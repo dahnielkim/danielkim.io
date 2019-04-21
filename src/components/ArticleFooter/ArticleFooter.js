@@ -6,7 +6,7 @@ import './ArticleFooter.css';
 export default class ArticleFooter extends React.Component {
   render() {
     return (
-      <Grid class="dkim-article-footer-container">
+      <Grid className="dkim-article-footer-container">
         <Grid.Row only="computer tablet">
           <Segment padded="very" raised>
             <Grid>
@@ -38,7 +38,7 @@ export default class ArticleFooter extends React.Component {
 
                       <a
                         href="https://twitter.com/intent/tweet?screen_name=dahnielkim&ref_src=twsrc%5Etfw"
-                        class="twitter-mention-button"
+                        className="twitter-mention-button"
                         data-show-count="false"
                       >
                         <Button

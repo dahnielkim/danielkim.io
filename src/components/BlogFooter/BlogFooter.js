@@ -11,7 +11,10 @@ const BlogFooter = props => {
           <Grid.Column width={8} textAlign="left">
             <span className="blog-prev-nav">
               {props.prev && (
-                <Link to={`/${props.type}/${props.prev.frontmatter.path}`}>
+                <Link
+                  to={`/${props.type}/${props.prev.frontmatter.path}`}
+                  className="dkim-link"
+                >
                   ← {props.prev.frontmatter.title}
                 </Link>
               )}
@@ -21,7 +24,10 @@ const BlogFooter = props => {
           <Grid.Column width={8} textAlign="right">
             <span className="blog-next-nav">
               {props.next && (
-                <Link to={`/${props.type}/${props.next.frontmatter.path}`}>
+                <Link
+                  to={`/${props.type}/${props.next.frontmatter.path}`}
+                  className="dkim-link"
+                >
                   {props.next.frontmatter.title} →
                 </Link>
               )}

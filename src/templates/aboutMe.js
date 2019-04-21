@@ -20,7 +20,10 @@ const AboutMe = props => {
           This website is a compilation of articles and musings written by{' '}
           <Link to="/">Daniel Kim</Link> on various topics ranging from design,
           development, creativity, religion, etc. Currently, I have written a total of{' '}
-          <Link to="/articles">{props.pageContext.posts.length}</Link> posts.
+          <Link className="dkim-link" to="/articles">
+            {props.pageContext.posts.length}
+          </Link>{' '}
+          posts.
         </p>
         <p>
           Originally a process control design engineer working in the pharmaceutical /
@@ -45,10 +48,14 @@ const AboutMe = props => {
           Currently, I spend my days working at{' '}
           <a href="https://www.vlocity.com">Vlocity, Inc</a> building the company's award
           winning product{' '}
-          <a href="https://www.vlocity.com/platform#omniscript">OmniScript</a>
-          <sub>TM</sub> and{' '}
-          <a href="https://www.vlocity.com/platform#dataraptor">DataRaptor</a>
-          <sub>TM</sub>.
+          <a className="dkim-link" href="https://www.vlocity.com/platform#omniscript">
+            OmniScript<sub>TM</sub>
+          </a>
+          and{' '}
+          <a className="dkim-link" href="https://www.vlocity.com/platform#dataraptor">
+            DataRaptor<sub>TM</sub>
+          </a>
+          .
         </p>
         <p>
           If I'm not coding or working out at the gym, I am probably stuffing my face with
