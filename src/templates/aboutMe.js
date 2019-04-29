@@ -28,8 +28,8 @@ const AboutMe = props => {
         <p>
           Originally a process control design engineer working in the pharmaceutical /
           biotech industry, I converted to software development due to my love for
-          creating and solving things. I am blessed and privileged to spend everyday doing
-          what I love.
+          creating and solving things. I am blessed and privileged to spend every day
+          doing what I love.
         </p>
         <p>
           Since the summer of 2018, I have been calling the beautiful city of{' '}
@@ -40,7 +40,7 @@ const AboutMe = props => {
         </p>
         <p>
           I love learning new ways to solve old problems. Technology, food, and weight
-          training are deep passions of mine.
+          training are loves of mine.
         </p>
 
         <h2>What I am currently doing?</h2>
