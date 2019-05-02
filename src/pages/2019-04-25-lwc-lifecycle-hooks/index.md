@@ -3,7 +3,7 @@ path: 'lwc-lifecycle-hooks'
 date: '2019-04-25'
 title: 'Lightning Web Component Lifecycle Hooks'
 tags: ['lwc', 'articles']
-excerpt: 'Lightning Web Components?Lightning Web Components is a javascript framework maintained by Salesforce which uses custom HTML elements built using HTML and ...'
+excerpt: 'Lightning Web Components? Lightning Web Components is a javascript framework maintained by Salesforce which uses custom HTML elements built using HTML and ...'
 featuredImage: './lifecycle-hooks.jpg'
 ---
 ### Lightning Web Components? What is that?
