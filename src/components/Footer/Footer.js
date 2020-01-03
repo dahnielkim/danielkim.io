@@ -35,7 +35,7 @@ const Footer = () => (
       </Grid.Row>
 
       <Grid.Row style={{ fontSize: 13, color: 'rgb(0,0,0,0.4)', marginBottom: '1rem' }}>
-        © 2019 Daniel Kim. All Rights Reserved.
+        ©2020 Daniel Kim. All Rights Reserved.
       </Grid.Row>
     </Grid>
   </Container>
