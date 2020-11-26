@@ -91,15 +91,17 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-plugin-webfonts`,
       options: {
-        fonts: [
-          {
-            family: `Oxygen`,
-            subsets: [`latin`],
-            variants: [`400`, `700`],
-          },
-        ],
+        fonts: {
+          google: [
+            {
+              family: `Oxygen`,
+              subsets: [`latin`],
+              variants: [`400`, `700`],
+            },
+          ]
+        },
       },
     },
     {
