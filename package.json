@@ -43,7 +43,8 @@
     "typewriter-effect": "^2.5.2"
   },
   "devDependencies": {
-    "prettier": "^1.16.4"
+    "prettier": "^1.16.4",
+    "eslint-utils": ">=1.4.1"
   },
   "repository": {
     "type": "git",
