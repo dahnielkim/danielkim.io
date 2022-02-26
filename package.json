@@ -30,7 +30,7 @@
     "gatsby-transformer-remark": "^2.3.0",
     "gatsby-transformer-sharp": "^2.1.1-rc.3",
     "less": "^3.9.0",
-    "prismjs": ">=1.21.0",
+    "prismjs": ">=1.27.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
